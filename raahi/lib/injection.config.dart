@@ -20,6 +20,7 @@ GetIt $initGetIt(
   EnvironmentFilter environmentFilter,
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
+  gh.lazySingleton<MyLocation>(() => MyLocation());
   gh.factory<SearchBloc>(() => SearchBloc());
 
   // Eager singletons must be registered in the right order

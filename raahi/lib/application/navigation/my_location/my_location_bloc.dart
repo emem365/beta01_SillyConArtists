@@ -17,18 +17,41 @@ part 'my_location_bloc.freezed.dart';
 
 @Singleton()
 class MyLocationBloc extends Bloc<MyLocationEvent, MyLocationState> {
-  MyLocation _myLocation;
+  final MyLocation _myLocation;
 
   MyLocationBloc(this._myLocation) : super(MyLocationState.initial());
+
+  StreamSubscription _locationDataStreamSubscription;
 
   @override
   Stream<MyLocationState> mapEventToState(
     MyLocationEvent event,
   ) async* {
     yield* event.map(
-      getPermission: (e) async* {},
-      getStatus: (e) async* {},
-      locationUpdated: (e) async* {},
+      getPermission: (e) async* {
+        final Either<PermissionFailure, Unit> permissionFailureOrSuccess =
+            await _myLocation.getPermission();
+        yield state.copyWith(
+            permissionFailureOrSuccessOption: some(permissionFailureOrSuccess));
+      },
+      getStatus: (e) async* {
+        final Either<StatusFailure, Unit> statusFailureOrSuccess =
+            await _myLocation.getServiceStatus();
+        yield state.copyWith(
+            statusFailureOrSuccessOption: some(statusFailureOrSuccess));
+      },
+      listenToLocation: (e) async* {
+        await _myLocation.startListening();
+        _locationDataStreamSubscription = _myLocation.locationStream.listen((locationData) {
+          add(MyLocationEvent.locationUpdated(locationData: locationData));
+        });
+      },
+      locationUpdated: (e) async* {
+        yield state.copyWith(locationDataOption: some(e.locationData));
+      },
+      stopListening: (e) async* {
+        _locationDataStreamSubscription?.cancel();
+      }
     );
   }
 }

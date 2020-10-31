@@ -24,8 +24,20 @@ class _$MyLocationEventTearOff {
   }
 
 // ignore: unused_element
-  _LocationUpdated locationUpdated() {
-    return const _LocationUpdated();
+  _ListenToLocation listenToLocation() {
+    return const _ListenToLocation();
+  }
+
+// ignore: unused_element
+  _LocationUpdated locationUpdated({@required LocationData locationData}) {
+    return _LocationUpdated(
+      locationData: locationData,
+    );
+  }
+
+// ignore: unused_element
+  _StopListening stopListening() {
+    return const _StopListening();
   }
 }
 
@@ -39,26 +51,34 @@ mixin _$MyLocationEvent {
   Result when<Result extends Object>({
     @required Result getPermission(),
     @required Result getStatus(),
-    @required Result locationUpdated(),
+    @required Result listenToLocation(),
+    @required Result locationUpdated(LocationData locationData),
+    @required Result stopListening(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result getPermission(),
     Result getStatus(),
-    Result locationUpdated(),
+    Result listenToLocation(),
+    Result locationUpdated(LocationData locationData),
+    Result stopListening(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result getPermission(_GetPermission value),
     @required Result getStatus(_GetStatus value),
+    @required Result listenToLocation(_ListenToLocation value),
     @required Result locationUpdated(_LocationUpdated value),
+    @required Result stopListening(_StopListening value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result getPermission(_GetPermission value),
     Result getStatus(_GetStatus value),
+    Result listenToLocation(_ListenToLocation value),
     Result locationUpdated(_LocationUpdated value),
+    Result stopListening(_StopListening value),
     @required Result orElse(),
   });
 }
@@ -121,11 +141,15 @@ class _$_GetPermission implements _GetPermission {
   Result when<Result extends Object>({
     @required Result getPermission(),
     @required Result getStatus(),
-    @required Result locationUpdated(),
+    @required Result listenToLocation(),
+    @required Result locationUpdated(LocationData locationData),
+    @required Result stopListening(),
   }) {
     assert(getPermission != null);
     assert(getStatus != null);
+    assert(listenToLocation != null);
     assert(locationUpdated != null);
+    assert(stopListening != null);
     return getPermission();
   }
 
@@ -134,7 +158,9 @@ class _$_GetPermission implements _GetPermission {
   Result maybeWhen<Result extends Object>({
     Result getPermission(),
     Result getStatus(),
-    Result locationUpdated(),
+    Result listenToLocation(),
+    Result locationUpdated(LocationData locationData),
+    Result stopListening(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -149,11 +175,15 @@ class _$_GetPermission implements _GetPermission {
   Result map<Result extends Object>({
     @required Result getPermission(_GetPermission value),
     @required Result getStatus(_GetStatus value),
+    @required Result listenToLocation(_ListenToLocation value),
     @required Result locationUpdated(_LocationUpdated value),
+    @required Result stopListening(_StopListening value),
   }) {
     assert(getPermission != null);
     assert(getStatus != null);
+    assert(listenToLocation != null);
     assert(locationUpdated != null);
+    assert(stopListening != null);
     return getPermission(this);
   }
 
@@ -162,7 +192,9 @@ class _$_GetPermission implements _GetPermission {
   Result maybeMap<Result extends Object>({
     Result getPermission(_GetPermission value),
     Result getStatus(_GetStatus value),
+    Result listenToLocation(_ListenToLocation value),
     Result locationUpdated(_LocationUpdated value),
+    Result stopListening(_StopListening value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -216,11 +248,15 @@ class _$_GetStatus implements _GetStatus {
   Result when<Result extends Object>({
     @required Result getPermission(),
     @required Result getStatus(),
-    @required Result locationUpdated(),
+    @required Result listenToLocation(),
+    @required Result locationUpdated(LocationData locationData),
+    @required Result stopListening(),
   }) {
     assert(getPermission != null);
     assert(getStatus != null);
+    assert(listenToLocation != null);
     assert(locationUpdated != null);
+    assert(stopListening != null);
     return getStatus();
   }
 
@@ -229,7 +265,9 @@ class _$_GetStatus implements _GetStatus {
   Result maybeWhen<Result extends Object>({
     Result getPermission(),
     Result getStatus(),
-    Result locationUpdated(),
+    Result listenToLocation(),
+    Result locationUpdated(LocationData locationData),
+    Result stopListening(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -244,11 +282,15 @@ class _$_GetStatus implements _GetStatus {
   Result map<Result extends Object>({
     @required Result getPermission(_GetPermission value),
     @required Result getStatus(_GetStatus value),
+    @required Result listenToLocation(_ListenToLocation value),
     @required Result locationUpdated(_LocationUpdated value),
+    @required Result stopListening(_StopListening value),
   }) {
     assert(getPermission != null);
     assert(getStatus != null);
+    assert(listenToLocation != null);
     assert(locationUpdated != null);
+    assert(stopListening != null);
     return getStatus(this);
   }
 
@@ -257,7 +299,9 @@ class _$_GetStatus implements _GetStatus {
   Result maybeMap<Result extends Object>({
     Result getPermission(_GetPermission value),
     Result getStatus(_GetStatus value),
+    Result listenToLocation(_ListenToLocation value),
     Result locationUpdated(_LocationUpdated value),
+    Result stopListening(_StopListening value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -273,10 +317,120 @@ abstract class _GetStatus implements MyLocationEvent {
 }
 
 /// @nodoc
+abstract class _$ListenToLocationCopyWith<$Res> {
+  factory _$ListenToLocationCopyWith(
+          _ListenToLocation value, $Res Function(_ListenToLocation) then) =
+      __$ListenToLocationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ListenToLocationCopyWithImpl<$Res>
+    extends _$MyLocationEventCopyWithImpl<$Res>
+    implements _$ListenToLocationCopyWith<$Res> {
+  __$ListenToLocationCopyWithImpl(
+      _ListenToLocation _value, $Res Function(_ListenToLocation) _then)
+      : super(_value, (v) => _then(v as _ListenToLocation));
+
+  @override
+  _ListenToLocation get _value => super._value as _ListenToLocation;
+}
+
+/// @nodoc
+class _$_ListenToLocation implements _ListenToLocation {
+  const _$_ListenToLocation();
+
+  @override
+  String toString() {
+    return 'MyLocationEvent.listenToLocation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _ListenToLocation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result getPermission(),
+    @required Result getStatus(),
+    @required Result listenToLocation(),
+    @required Result locationUpdated(LocationData locationData),
+    @required Result stopListening(),
+  }) {
+    assert(getPermission != null);
+    assert(getStatus != null);
+    assert(listenToLocation != null);
+    assert(locationUpdated != null);
+    assert(stopListening != null);
+    return listenToLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result getPermission(),
+    Result getStatus(),
+    Result listenToLocation(),
+    Result locationUpdated(LocationData locationData),
+    Result stopListening(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (listenToLocation != null) {
+      return listenToLocation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result getPermission(_GetPermission value),
+    @required Result getStatus(_GetStatus value),
+    @required Result listenToLocation(_ListenToLocation value),
+    @required Result locationUpdated(_LocationUpdated value),
+    @required Result stopListening(_StopListening value),
+  }) {
+    assert(getPermission != null);
+    assert(getStatus != null);
+    assert(listenToLocation != null);
+    assert(locationUpdated != null);
+    assert(stopListening != null);
+    return listenToLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result getPermission(_GetPermission value),
+    Result getStatus(_GetStatus value),
+    Result listenToLocation(_ListenToLocation value),
+    Result locationUpdated(_LocationUpdated value),
+    Result stopListening(_StopListening value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (listenToLocation != null) {
+      return listenToLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ListenToLocation implements MyLocationEvent {
+  const factory _ListenToLocation() = _$_ListenToLocation;
+}
+
+/// @nodoc
 abstract class _$LocationUpdatedCopyWith<$Res> {
   factory _$LocationUpdatedCopyWith(
           _LocationUpdated value, $Res Function(_LocationUpdated) then) =
       __$LocationUpdatedCopyWithImpl<$Res>;
+  $Res call({LocationData locationData});
 }
 
 /// @nodoc
@@ -289,36 +443,64 @@ class __$LocationUpdatedCopyWithImpl<$Res>
 
   @override
   _LocationUpdated get _value => super._value as _LocationUpdated;
+
+  @override
+  $Res call({
+    Object locationData = freezed,
+  }) {
+    return _then(_LocationUpdated(
+      locationData: locationData == freezed
+          ? _value.locationData
+          : locationData as LocationData,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_LocationUpdated implements _LocationUpdated {
-  const _$_LocationUpdated();
+  const _$_LocationUpdated({@required this.locationData})
+      : assert(locationData != null);
+
+  @override
+  final LocationData locationData;
 
   @override
   String toString() {
-    return 'MyLocationEvent.locationUpdated()';
+    return 'MyLocationEvent.locationUpdated(locationData: $locationData)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _LocationUpdated);
+    return identical(this, other) ||
+        (other is _LocationUpdated &&
+            (identical(other.locationData, locationData) ||
+                const DeepCollectionEquality()
+                    .equals(other.locationData, locationData)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(locationData);
+
+  @override
+  _$LocationUpdatedCopyWith<_LocationUpdated> get copyWith =>
+      __$LocationUpdatedCopyWithImpl<_LocationUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result getPermission(),
     @required Result getStatus(),
-    @required Result locationUpdated(),
+    @required Result listenToLocation(),
+    @required Result locationUpdated(LocationData locationData),
+    @required Result stopListening(),
   }) {
     assert(getPermission != null);
     assert(getStatus != null);
+    assert(listenToLocation != null);
     assert(locationUpdated != null);
-    return locationUpdated();
+    assert(stopListening != null);
+    return locationUpdated(locationData);
   }
 
   @override
@@ -326,12 +508,14 @@ class _$_LocationUpdated implements _LocationUpdated {
   Result maybeWhen<Result extends Object>({
     Result getPermission(),
     Result getStatus(),
-    Result locationUpdated(),
+    Result listenToLocation(),
+    Result locationUpdated(LocationData locationData),
+    Result stopListening(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (locationUpdated != null) {
-      return locationUpdated();
+      return locationUpdated(locationData);
     }
     return orElse();
   }
@@ -341,11 +525,15 @@ class _$_LocationUpdated implements _LocationUpdated {
   Result map<Result extends Object>({
     @required Result getPermission(_GetPermission value),
     @required Result getStatus(_GetStatus value),
+    @required Result listenToLocation(_ListenToLocation value),
     @required Result locationUpdated(_LocationUpdated value),
+    @required Result stopListening(_StopListening value),
   }) {
     assert(getPermission != null);
     assert(getStatus != null);
+    assert(listenToLocation != null);
     assert(locationUpdated != null);
+    assert(stopListening != null);
     return locationUpdated(this);
   }
 
@@ -354,7 +542,9 @@ class _$_LocationUpdated implements _LocationUpdated {
   Result maybeMap<Result extends Object>({
     Result getPermission(_GetPermission value),
     Result getStatus(_GetStatus value),
+    Result listenToLocation(_ListenToLocation value),
     Result locationUpdated(_LocationUpdated value),
+    Result stopListening(_StopListening value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -366,7 +556,120 @@ class _$_LocationUpdated implements _LocationUpdated {
 }
 
 abstract class _LocationUpdated implements MyLocationEvent {
-  const factory _LocationUpdated() = _$_LocationUpdated;
+  const factory _LocationUpdated({@required LocationData locationData}) =
+      _$_LocationUpdated;
+
+  LocationData get locationData;
+  _$LocationUpdatedCopyWith<_LocationUpdated> get copyWith;
+}
+
+/// @nodoc
+abstract class _$StopListeningCopyWith<$Res> {
+  factory _$StopListeningCopyWith(
+          _StopListening value, $Res Function(_StopListening) then) =
+      __$StopListeningCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$StopListeningCopyWithImpl<$Res>
+    extends _$MyLocationEventCopyWithImpl<$Res>
+    implements _$StopListeningCopyWith<$Res> {
+  __$StopListeningCopyWithImpl(
+      _StopListening _value, $Res Function(_StopListening) _then)
+      : super(_value, (v) => _then(v as _StopListening));
+
+  @override
+  _StopListening get _value => super._value as _StopListening;
+}
+
+/// @nodoc
+class _$_StopListening implements _StopListening {
+  const _$_StopListening();
+
+  @override
+  String toString() {
+    return 'MyLocationEvent.stopListening()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _StopListening);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result getPermission(),
+    @required Result getStatus(),
+    @required Result listenToLocation(),
+    @required Result locationUpdated(LocationData locationData),
+    @required Result stopListening(),
+  }) {
+    assert(getPermission != null);
+    assert(getStatus != null);
+    assert(listenToLocation != null);
+    assert(locationUpdated != null);
+    assert(stopListening != null);
+    return stopListening();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result getPermission(),
+    Result getStatus(),
+    Result listenToLocation(),
+    Result locationUpdated(LocationData locationData),
+    Result stopListening(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (stopListening != null) {
+      return stopListening();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result getPermission(_GetPermission value),
+    @required Result getStatus(_GetStatus value),
+    @required Result listenToLocation(_ListenToLocation value),
+    @required Result locationUpdated(_LocationUpdated value),
+    @required Result stopListening(_StopListening value),
+  }) {
+    assert(getPermission != null);
+    assert(getStatus != null);
+    assert(listenToLocation != null);
+    assert(locationUpdated != null);
+    assert(stopListening != null);
+    return stopListening(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result getPermission(_GetPermission value),
+    Result getStatus(_GetStatus value),
+    Result listenToLocation(_ListenToLocation value),
+    Result locationUpdated(_LocationUpdated value),
+    Result stopListening(_StopListening value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (stopListening != null) {
+      return stopListening(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StopListening implements MyLocationEvent {
+  const factory _StopListening() = _$_StopListening;
 }
 
 /// @nodoc
