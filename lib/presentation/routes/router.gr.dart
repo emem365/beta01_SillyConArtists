@@ -12,14 +12,17 @@ import 'package:flutter/material.dart';
 import '../core/splash.dart';
 import '../home/home.dart';
 import '../navigation/navigation.dart';
+import '../search/search.dart';
 
 class Routes {
   static const String splash = '/';
   static const String home = '/Home';
+  static const String search = '/Search';
   static const String navigation = '/Navigation';
   static const all = <String>{
     splash,
     home,
+    search,
     navigation,
   };
 }
@@ -30,6 +33,7 @@ class Router extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.splash, page: Splash),
     RouteDef(Routes.home, page: Home),
+    RouteDef(Routes.search, page: Search),
     RouteDef(Routes.navigation, page: Navigation),
   ];
   @override
@@ -46,6 +50,13 @@ class Router extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) => Home(),
         settings: data,
         transitionDuration: const Duration(milliseconds: 1500),
+      );
+    },
+    Search: (data) {
+      return PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => Search(),
+        settings: data,
+        transitionDuration: const Duration(milliseconds: 500),
       );
     },
     Navigation: (data) {
