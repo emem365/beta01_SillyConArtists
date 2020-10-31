@@ -47,7 +47,15 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
               QueryResultObject(
                 name: LocationName('This place'),
                 distance: 200.0,
-              )
+              ),
+              QueryResultObject(
+                name: LocationName('This place'),
+                distance: 200.0,
+              ),
+              QueryResultObject(
+                name: LocationName('This place'),
+                distance: 200.0,
+              ),
             ],
           ),
         ); // This is dummy data replace it with real
