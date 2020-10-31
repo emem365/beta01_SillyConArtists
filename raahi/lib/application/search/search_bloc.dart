@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:location/location.dart';
 import 'package:meta/meta.dart';
 import 'package:raahi/domain/core/value_objects.dart';
 import 'package:raahi/domain/search/query_result_object.dart';
