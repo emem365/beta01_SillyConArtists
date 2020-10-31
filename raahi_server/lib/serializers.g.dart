@@ -10,11 +10,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(DirectionsResponse.serializer)
       ..add(Feature.serializer)
       ..add(GeoCodeFeature.serializer)
+      ..add(GeoCodeGeometry.serializer)
       ..add(GeoCodeProperties.serializer)
       ..add(GeoCodeResponse.serializer)
+      ..add(Geometry.serializer)
       ..add(Property.serializer)
       ..add(Segment.serializer)
-      ..add(Step.serializer)
+      ..add(Steps.serializer)
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(BuiltList, const [const FullType(double)])
+          ]),
+          () => new ListBuilder<BuiltList<double>>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Feature)]),
           () => new ListBuilder<Feature>())
@@ -25,8 +32,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(Segment)]),
           () => new ListBuilder<Segment>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Step)]),
-          () => new ListBuilder<Step>())
+          const FullType(BuiltList, const [const FullType(Steps)]),
+          () => new ListBuilder<Steps>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>()))

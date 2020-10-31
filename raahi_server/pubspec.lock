@@ -221,6 +221,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.1"
   glob:
     dependency: transitive
     description:
@@ -354,6 +361,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.2"
+  polyline:
+    dependency: "direct main"
+    description:
+      name: polyline
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   pool:
     dependency: transitive
     description:
@@ -408,6 +422,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sms_maintained:
+    dependency: "direct main"
+    description:
+      name: sms_maintained
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.5"
   source_gen:
     dependency: transitive
     description:
