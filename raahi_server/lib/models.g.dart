@@ -9,13 +9,16 @@ part of 'models.dart';
 Serializer<DirectionsResponse> _$directionsResponseSerializer =
     new _$DirectionsResponseSerializer();
 Serializer<Feature> _$featureSerializer = new _$FeatureSerializer();
+Serializer<Geometry> _$geometrySerializer = new _$GeometrySerializer();
 Serializer<Property> _$propertySerializer = new _$PropertySerializer();
 Serializer<Segment> _$segmentSerializer = new _$SegmentSerializer();
-Serializer<Step> _$stepSerializer = new _$StepSerializer();
+Serializer<Steps> _$stepsSerializer = new _$StepsSerializer();
 Serializer<GeoCodeResponse> _$geoCodeResponseSerializer =
     new _$GeoCodeResponseSerializer();
 Serializer<GeoCodeFeature> _$geoCodeFeatureSerializer =
     new _$GeoCodeFeatureSerializer();
+Serializer<GeoCodeGeometry> _$geoCodeGeometrySerializer =
+    new _$GeoCodeGeometrySerializer();
 Serializer<GeoCodeProperties> _$geoCodePropertiesSerializer =
     new _$GeoCodePropertiesSerializer();
 
@@ -77,6 +80,9 @@ class _$FeatureSerializer implements StructuredSerializer<Feature> {
       'properties',
       serializers.serialize(object.properties,
           specifiedType: const FullType(Property)),
+      'geometry',
+      serializers.serialize(object.geometry,
+          specifiedType: const FullType(Geometry)),
     ];
 
     return result;
@@ -96,6 +102,54 @@ class _$FeatureSerializer implements StructuredSerializer<Feature> {
         case 'properties':
           result.properties.replace(serializers.deserialize(value,
               specifiedType: const FullType(Property)) as Property);
+          break;
+        case 'geometry':
+          result.geometry.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Geometry)) as Geometry);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GeometrySerializer implements StructuredSerializer<Geometry> {
+  @override
+  final Iterable<Type> types = const [Geometry, _$Geometry];
+  @override
+  final String wireName = 'Geometry';
+
+  @override
+  Iterable<Object> serialize(Serializers serializers, Geometry object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object>[
+      'coordinates',
+      serializers.serialize(object.coordinates,
+          specifiedType: const FullType(BuiltList, const [
+            const FullType(BuiltList, const [const FullType(double)])
+          ])),
+    ];
+
+    return result;
+  }
+
+  @override
+  Geometry deserialize(Serializers serializers, Iterable<Object> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GeometryBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'coordinates':
+          result.coordinates.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(BuiltList, const [const FullType(double)])
+              ])) as BuiltList<Object>);
           break;
       }
     }
@@ -160,7 +214,7 @@ class _$SegmentSerializer implements StructuredSerializer<Segment> {
       'steps',
       serializers.serialize(object.steps,
           specifiedType:
-              const FullType(BuiltList, const [const FullType(Step)])),
+              const FullType(BuiltList, const [const FullType(Steps)])),
     ];
 
     return result;
@@ -180,7 +234,7 @@ class _$SegmentSerializer implements StructuredSerializer<Segment> {
         case 'steps':
           result.steps.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(BuiltList, const [const FullType(Step)]))
+                      const FullType(BuiltList, const [const FullType(Steps)]))
               as BuiltList<Object>);
           break;
       }
@@ -190,14 +244,14 @@ class _$SegmentSerializer implements StructuredSerializer<Segment> {
   }
 }
 
-class _$StepSerializer implements StructuredSerializer<Step> {
+class _$StepsSerializer implements StructuredSerializer<Steps> {
   @override
-  final Iterable<Type> types = const [Step, _$Step];
+  final Iterable<Type> types = const [Steps, _$Steps];
   @override
-  final String wireName = 'Step';
+  final String wireName = 'Steps';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Step object,
+  Iterable<Object> serialize(Serializers serializers, Steps object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'distance',
@@ -223,9 +277,9 @@ class _$StepSerializer implements StructuredSerializer<Step> {
   }
 
   @override
-  Step deserialize(Serializers serializers, Iterable<Object> serialized,
+  Steps deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new StepBuilder();
+    final result = new StepsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -325,6 +379,9 @@ class _$GeoCodeFeatureSerializer
       'properties',
       serializers.serialize(object.properties,
           specifiedType: const FullType(GeoCodeProperties)),
+      'geometry',
+      serializers.serialize(object.geometry,
+          specifiedType: const FullType(GeoCodeGeometry)),
     ];
 
     return result;
@@ -346,6 +403,56 @@ class _$GeoCodeFeatureSerializer
           result.properties.replace(serializers.deserialize(value,
                   specifiedType: const FullType(GeoCodeProperties))
               as GeoCodeProperties);
+          break;
+        case 'geometry':
+          result.geometry.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GeoCodeGeometry))
+              as GeoCodeGeometry);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GeoCodeGeometrySerializer
+    implements StructuredSerializer<GeoCodeGeometry> {
+  @override
+  final Iterable<Type> types = const [GeoCodeGeometry, _$GeoCodeGeometry];
+  @override
+  final String wireName = 'GeoCodeGeometry';
+
+  @override
+  Iterable<Object> serialize(Serializers serializers, GeoCodeGeometry object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object>[
+      'coordinates',
+      serializers.serialize(object.coordinates,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(double)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GeoCodeGeometry deserialize(
+      Serializers serializers, Iterable<Object> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GeoCodeGeometryBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'coordinates':
+          result.coordinates.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(double)]))
+              as BuiltList<Object>);
           break;
       }
     }
@@ -631,13 +738,18 @@ class DirectionsResponseBuilder
 class _$Feature extends Feature {
   @override
   final Property properties;
+  @override
+  final Geometry geometry;
 
   factory _$Feature([void Function(FeatureBuilder) updates]) =>
       (new FeatureBuilder()..update(updates)).build();
 
-  _$Feature._({this.properties}) : super._() {
+  _$Feature._({this.properties, this.geometry}) : super._() {
     if (properties == null) {
       throw new BuiltValueNullFieldError('Feature', 'properties');
+    }
+    if (geometry == null) {
+      throw new BuiltValueNullFieldError('Feature', 'geometry');
     }
   }
 
@@ -651,18 +763,21 @@ class _$Feature extends Feature {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Feature && properties == other.properties;
+    return other is Feature &&
+        properties == other.properties &&
+        geometry == other.geometry;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, properties.hashCode));
+    return $jf($jc($jc(0, properties.hashCode), geometry.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Feature')
-          ..add('properties', properties))
+          ..add('properties', properties)
+          ..add('geometry', geometry))
         .toString();
   }
 }
@@ -675,11 +790,16 @@ class FeatureBuilder implements Builder<Feature, FeatureBuilder> {
       _$this._properties ??= new PropertyBuilder();
   set properties(PropertyBuilder properties) => _$this._properties = properties;
 
+  GeometryBuilder _geometry;
+  GeometryBuilder get geometry => _$this._geometry ??= new GeometryBuilder();
+  set geometry(GeometryBuilder geometry) => _$this._geometry = geometry;
+
   FeatureBuilder();
 
   FeatureBuilder get _$this {
     if (_$v != null) {
       _properties = _$v.properties?.toBuilder();
+      _geometry = _$v.geometry?.toBuilder();
       _$v = null;
     }
     return this;
@@ -702,15 +822,111 @@ class FeatureBuilder implements Builder<Feature, FeatureBuilder> {
   _$Feature build() {
     _$Feature _$result;
     try {
-      _$result = _$v ?? new _$Feature._(properties: properties.build());
+      _$result = _$v ??
+          new _$Feature._(
+              properties: properties.build(), geometry: geometry.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'properties';
         properties.build();
+        _$failedField = 'geometry';
+        geometry.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Feature', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Geometry extends Geometry {
+  @override
+  final BuiltList<BuiltList<double>> coordinates;
+
+  factory _$Geometry([void Function(GeometryBuilder) updates]) =>
+      (new GeometryBuilder()..update(updates)).build();
+
+  _$Geometry._({this.coordinates}) : super._() {
+    if (coordinates == null) {
+      throw new BuiltValueNullFieldError('Geometry', 'coordinates');
+    }
+  }
+
+  @override
+  Geometry rebuild(void Function(GeometryBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GeometryBuilder toBuilder() => new GeometryBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Geometry && coordinates == other.coordinates;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, coordinates.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Geometry')
+          ..add('coordinates', coordinates))
+        .toString();
+  }
+}
+
+class GeometryBuilder implements Builder<Geometry, GeometryBuilder> {
+  _$Geometry _$v;
+
+  ListBuilder<BuiltList<double>> _coordinates;
+  ListBuilder<BuiltList<double>> get coordinates =>
+      _$this._coordinates ??= new ListBuilder<BuiltList<double>>();
+  set coordinates(ListBuilder<BuiltList<double>> coordinates) =>
+      _$this._coordinates = coordinates;
+
+  GeometryBuilder();
+
+  GeometryBuilder get _$this {
+    if (_$v != null) {
+      _coordinates = _$v.coordinates?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Geometry other) {
+    if (other == null) {
+      throw new ArgumentError.notNull('other');
+    }
+    _$v = other as _$Geometry;
+  }
+
+  @override
+  void update(void Function(GeometryBuilder) updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Geometry build() {
+    _$Geometry _$result;
+    try {
+      _$result = _$v ?? new _$Geometry._(coordinates: coordinates.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'coordinates';
+        coordinates.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Geometry', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -811,7 +1027,7 @@ class PropertyBuilder implements Builder<Property, PropertyBuilder> {
 
 class _$Segment extends Segment {
   @override
-  final BuiltList<Step> steps;
+  final BuiltList<Steps> steps;
 
   factory _$Segment([void Function(SegmentBuilder) updates]) =>
       (new SegmentBuilder()..update(updates)).build();
@@ -850,9 +1066,9 @@ class _$Segment extends Segment {
 class SegmentBuilder implements Builder<Segment, SegmentBuilder> {
   _$Segment _$v;
 
-  ListBuilder<Step> _steps;
-  ListBuilder<Step> get steps => _$this._steps ??= new ListBuilder<Step>();
-  set steps(ListBuilder<Step> steps) => _$this._steps = steps;
+  ListBuilder<Steps> _steps;
+  ListBuilder<Steps> get steps => _$this._steps ??= new ListBuilder<Steps>();
+  set steps(ListBuilder<Steps> steps) => _$this._steps = steps;
 
   SegmentBuilder();
 
@@ -898,7 +1114,7 @@ class SegmentBuilder implements Builder<Segment, SegmentBuilder> {
   }
 }
 
-class _$Step extends Step {
+class _$Steps extends Steps {
   @override
   final double distance;
   @override
@@ -912,10 +1128,10 @@ class _$Step extends Step {
   @override
   final BuiltList<int> wayPoints;
 
-  factory _$Step([void Function(StepBuilder) updates]) =>
-      (new StepBuilder()..update(updates)).build();
+  factory _$Steps([void Function(StepsBuilder) updates]) =>
+      (new StepsBuilder()..update(updates)).build();
 
-  _$Step._(
+  _$Steps._(
       {this.distance,
       this.duration,
       this.type,
@@ -924,36 +1140,36 @@ class _$Step extends Step {
       this.wayPoints})
       : super._() {
     if (distance == null) {
-      throw new BuiltValueNullFieldError('Step', 'distance');
+      throw new BuiltValueNullFieldError('Steps', 'distance');
     }
     if (duration == null) {
-      throw new BuiltValueNullFieldError('Step', 'duration');
+      throw new BuiltValueNullFieldError('Steps', 'duration');
     }
     if (type == null) {
-      throw new BuiltValueNullFieldError('Step', 'type');
+      throw new BuiltValueNullFieldError('Steps', 'type');
     }
     if (instruction == null) {
-      throw new BuiltValueNullFieldError('Step', 'instruction');
+      throw new BuiltValueNullFieldError('Steps', 'instruction');
     }
     if (name == null) {
-      throw new BuiltValueNullFieldError('Step', 'name');
+      throw new BuiltValueNullFieldError('Steps', 'name');
     }
     if (wayPoints == null) {
-      throw new BuiltValueNullFieldError('Step', 'wayPoints');
+      throw new BuiltValueNullFieldError('Steps', 'wayPoints');
     }
   }
 
   @override
-  Step rebuild(void Function(StepBuilder) updates) =>
+  Steps rebuild(void Function(StepsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  StepBuilder toBuilder() => new StepBuilder()..replace(this);
+  StepsBuilder toBuilder() => new StepsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Step &&
+    return other is Steps &&
         distance == other.distance &&
         duration == other.duration &&
         type == other.type &&
@@ -976,7 +1192,7 @@ class _$Step extends Step {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Step')
+    return (newBuiltValueToStringHelper('Steps')
           ..add('distance', distance)
           ..add('duration', duration)
           ..add('type', type)
@@ -987,8 +1203,8 @@ class _$Step extends Step {
   }
 }
 
-class StepBuilder implements Builder<Step, StepBuilder> {
-  _$Step _$v;
+class StepsBuilder implements Builder<Steps, StepsBuilder> {
+  _$Steps _$v;
 
   double _distance;
   double get distance => _$this._distance;
@@ -1015,9 +1231,9 @@ class StepBuilder implements Builder<Step, StepBuilder> {
       _$this._wayPoints ??= new ListBuilder<int>();
   set wayPoints(ListBuilder<int> wayPoints) => _$this._wayPoints = wayPoints;
 
-  StepBuilder();
+  StepsBuilder();
 
-  StepBuilder get _$this {
+  StepsBuilder get _$this {
     if (_$v != null) {
       _distance = _$v.distance;
       _duration = _$v.duration;
@@ -1031,24 +1247,24 @@ class StepBuilder implements Builder<Step, StepBuilder> {
   }
 
   @override
-  void replace(Step other) {
+  void replace(Steps other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Step;
+    _$v = other as _$Steps;
   }
 
   @override
-  void update(void Function(StepBuilder) updates) {
+  void update(void Function(StepsBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Step build() {
-    _$Step _$result;
+  _$Steps build() {
+    _$Steps _$result;
     try {
       _$result = _$v ??
-          new _$Step._(
+          new _$Steps._(
               distance: distance,
               duration: duration,
               type: type,
@@ -1062,7 +1278,7 @@ class StepBuilder implements Builder<Step, StepBuilder> {
         wayPoints.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'Step', _$failedField, e.toString());
+            'Steps', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -1168,13 +1384,18 @@ class GeoCodeResponseBuilder
 class _$GeoCodeFeature extends GeoCodeFeature {
   @override
   final GeoCodeProperties properties;
+  @override
+  final GeoCodeGeometry geometry;
 
   factory _$GeoCodeFeature([void Function(GeoCodeFeatureBuilder) updates]) =>
       (new GeoCodeFeatureBuilder()..update(updates)).build();
 
-  _$GeoCodeFeature._({this.properties}) : super._() {
+  _$GeoCodeFeature._({this.properties, this.geometry}) : super._() {
     if (properties == null) {
       throw new BuiltValueNullFieldError('GeoCodeFeature', 'properties');
+    }
+    if (geometry == null) {
+      throw new BuiltValueNullFieldError('GeoCodeFeature', 'geometry');
     }
   }
 
@@ -1189,18 +1410,21 @@ class _$GeoCodeFeature extends GeoCodeFeature {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GeoCodeFeature && properties == other.properties;
+    return other is GeoCodeFeature &&
+        properties == other.properties &&
+        geometry == other.geometry;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, properties.hashCode));
+    return $jf($jc($jc(0, properties.hashCode), geometry.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GeoCodeFeature')
-          ..add('properties', properties))
+          ..add('properties', properties)
+          ..add('geometry', geometry))
         .toString();
   }
 }
@@ -1215,11 +1439,17 @@ class GeoCodeFeatureBuilder
   set properties(GeoCodePropertiesBuilder properties) =>
       _$this._properties = properties;
 
+  GeoCodeGeometryBuilder _geometry;
+  GeoCodeGeometryBuilder get geometry =>
+      _$this._geometry ??= new GeoCodeGeometryBuilder();
+  set geometry(GeoCodeGeometryBuilder geometry) => _$this._geometry = geometry;
+
   GeoCodeFeatureBuilder();
 
   GeoCodeFeatureBuilder get _$this {
     if (_$v != null) {
       _properties = _$v.properties?.toBuilder();
+      _geometry = _$v.geometry?.toBuilder();
       _$v = null;
     }
     return this;
@@ -1242,15 +1472,114 @@ class GeoCodeFeatureBuilder
   _$GeoCodeFeature build() {
     _$GeoCodeFeature _$result;
     try {
-      _$result = _$v ?? new _$GeoCodeFeature._(properties: properties.build());
+      _$result = _$v ??
+          new _$GeoCodeFeature._(
+              properties: properties.build(), geometry: geometry.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'properties';
         properties.build();
+        _$failedField = 'geometry';
+        geometry.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GeoCodeFeature', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GeoCodeGeometry extends GeoCodeGeometry {
+  @override
+  final BuiltList<double> coordinates;
+
+  factory _$GeoCodeGeometry([void Function(GeoCodeGeometryBuilder) updates]) =>
+      (new GeoCodeGeometryBuilder()..update(updates)).build();
+
+  _$GeoCodeGeometry._({this.coordinates}) : super._() {
+    if (coordinates == null) {
+      throw new BuiltValueNullFieldError('GeoCodeGeometry', 'coordinates');
+    }
+  }
+
+  @override
+  GeoCodeGeometry rebuild(void Function(GeoCodeGeometryBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GeoCodeGeometryBuilder toBuilder() =>
+      new GeoCodeGeometryBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GeoCodeGeometry && coordinates == other.coordinates;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, coordinates.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GeoCodeGeometry')
+          ..add('coordinates', coordinates))
+        .toString();
+  }
+}
+
+class GeoCodeGeometryBuilder
+    implements Builder<GeoCodeGeometry, GeoCodeGeometryBuilder> {
+  _$GeoCodeGeometry _$v;
+
+  ListBuilder<double> _coordinates;
+  ListBuilder<double> get coordinates =>
+      _$this._coordinates ??= new ListBuilder<double>();
+  set coordinates(ListBuilder<double> coordinates) =>
+      _$this._coordinates = coordinates;
+
+  GeoCodeGeometryBuilder();
+
+  GeoCodeGeometryBuilder get _$this {
+    if (_$v != null) {
+      _coordinates = _$v.coordinates?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GeoCodeGeometry other) {
+    if (other == null) {
+      throw new ArgumentError.notNull('other');
+    }
+    _$v = other as _$GeoCodeGeometry;
+  }
+
+  @override
+  void update(void Function(GeoCodeGeometryBuilder) updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GeoCodeGeometry build() {
+    _$GeoCodeGeometry _$result;
+    try {
+      _$result =
+          _$v ?? new _$GeoCodeGeometry._(coordinates: coordinates.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'coordinates';
+        coordinates.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GeoCodeGeometry', _$failedField, e.toString());
       }
       rethrow;
     }

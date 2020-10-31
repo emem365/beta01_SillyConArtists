@@ -10,10 +10,17 @@ part 'serializers.g.dart';
   Feature,
   Property,
   Segment,
-  Step,
+  Steps,
   GeoCodeResponse,
   GeoCodeFeature,
+  GeoCodeGeometry,
   GeoCodeProperties,
+  Geometry,
 ])
-final Serializers serializers =
-    (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
+final Serializers serializers = (_$serializers.toBuilder()
+      ..addBuilderFactory(
+          // add this builder factory
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addPlugin(StandardJsonPlugin()))
+    .build();
