@@ -1,0 +1,1 @@
+[{"type":{"name":"SearchBloc","import":"package:raahi/application/search/search_bloc.dart"},"typeImpl":{"name":"SearchBloc","import":"package:raahi/application/search/search_bloc.dart"},"isAsync":false,"preResolve":false,"injectableType":0,"dependsOn":[],"environments":[],"dependencies":[],"constructorName":"","isAbstract":false}]
