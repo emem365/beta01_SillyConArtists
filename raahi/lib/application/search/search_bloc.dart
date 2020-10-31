@@ -4,11 +4,14 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:location/location.dart';
 import 'package:meta/meta.dart';
 import 'package:raahi/domain/core/value_objects.dart';
 import 'package:raahi/domain/search/query_result_object.dart';
 import 'package:raahi/domain/search/value_objects.dart';
 import 'package:raahi/domain/search/query_failure.dart';
+
+import '../../infrastructure/sms/sms_helper.dart';
 
 part 'search_event.dart';
 
@@ -16,9 +19,10 @@ part 'search_state.dart';
 
 part 'search_bloc.freezed.dart';
 
-@injectable
+@LazySingleton()
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc() : super(SearchState.initial());
+  final SmsHelper _smsHelper;
+  SearchBloc(this._smsHelper) : super(SearchState.initial());
 
   @override
   Stream<SearchState> mapEventToState(
@@ -30,13 +34,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       },
       sendQuery: (e) async* {
         // TODO: Implement sending SMS query
-        Future.delayed(
-          const Duration(milliseconds: 1000),
-          () => add(
-            const SearchEvent.queryResultReceived(),
-          ),
-        );
         yield state.copyWith(isLoading: true);
+        _smsHelper.sendSms(
+            '${state.searchInput.getOrCrash()};${e.locationData.latitude};${e.locationData.longitude}');
       },
       queryResultReceived: (e) async* {
         // TODO: Call when query sent successfully

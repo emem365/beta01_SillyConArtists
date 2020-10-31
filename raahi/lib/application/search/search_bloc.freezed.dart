@@ -21,8 +21,10 @@ class _$SearchEventTearOff {
   }
 
 // ignore: unused_element
-  _SendQuery sendQuery() {
-    return const _SendQuery();
+  _SendQuery sendQuery({@required LocationData locationData}) {
+    return _SendQuery(
+      locationData: locationData,
+    );
   }
 
 // ignore: unused_element
@@ -40,13 +42,13 @@ mixin _$SearchEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result inputChanged(String input),
-    @required Result sendQuery(),
+    @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
-    Result sendQuery(),
+    Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
     @required Result orElse(),
   });
@@ -141,7 +143,7 @@ class _$_InputChanged implements _InputChanged {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result inputChanged(String input),
-    @required Result sendQuery(),
+    @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
   }) {
     assert(inputChanged != null);
@@ -154,7 +156,7 @@ class _$_InputChanged implements _InputChanged {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
-    Result sendQuery(),
+    Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
     @required Result orElse(),
   }) {
@@ -206,6 +208,7 @@ abstract class _$SendQueryCopyWith<$Res> {
   factory _$SendQueryCopyWith(
           _SendQuery value, $Res Function(_SendQuery) then) =
       __$SendQueryCopyWithImpl<$Res>;
+  $Res call({LocationData locationData});
 }
 
 /// @nodoc
@@ -216,49 +219,73 @@ class __$SendQueryCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
   @override
   _SendQuery get _value => super._value as _SendQuery;
+
+  @override
+  $Res call({
+    Object locationData = freezed,
+  }) {
+    return _then(_SendQuery(
+      locationData: locationData == freezed
+          ? _value.locationData
+          : locationData as LocationData,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_SendQuery implements _SendQuery {
-  const _$_SendQuery();
+  const _$_SendQuery({@required this.locationData})
+      : assert(locationData != null);
+
+  @override
+  final LocationData locationData;
 
   @override
   String toString() {
-    return 'SearchEvent.sendQuery()';
+    return 'SearchEvent.sendQuery(locationData: $locationData)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SendQuery);
+    return identical(this, other) ||
+        (other is _SendQuery &&
+            (identical(other.locationData, locationData) ||
+                const DeepCollectionEquality()
+                    .equals(other.locationData, locationData)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(locationData);
+
+  @override
+  _$SendQueryCopyWith<_SendQuery> get copyWith =>
+      __$SendQueryCopyWithImpl<_SendQuery>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result inputChanged(String input),
-    @required Result sendQuery(),
+    @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
     assert(queryResultReceived != null);
-    return sendQuery();
+    return sendQuery(locationData);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
-    Result sendQuery(),
+    Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (sendQuery != null) {
-      return sendQuery();
+      return sendQuery(locationData);
     }
     return orElse();
   }
@@ -293,7 +320,11 @@ class _$_SendQuery implements _SendQuery {
 }
 
 abstract class _SendQuery implements SearchEvent {
-  const factory _SendQuery() = _$_SendQuery;
+  const factory _SendQuery({@required LocationData locationData}) =
+      _$_SendQuery;
+
+  LocationData get locationData;
+  _$SendQueryCopyWith<_SendQuery> get copyWith;
 }
 
 /// @nodoc
@@ -336,7 +367,7 @@ class _$_QueryResultReceived implements _QueryResultReceived {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result inputChanged(String input),
-    @required Result sendQuery(),
+    @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
   }) {
     assert(inputChanged != null);
@@ -349,7 +380,7 @@ class _$_QueryResultReceived implements _QueryResultReceived {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
-    Result sendQuery(),
+    Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
     @required Result orElse(),
   }) {

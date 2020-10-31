@@ -10,6 +10,7 @@ import 'package:injectable/injectable.dart';
 import 'infrastructure/location/my_location.dart';
 import 'application/navigation/my_location/my_location_bloc.dart';
 import 'application/search/search_bloc.dart';
+import 'infrastructure/sms/sms_helper.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -20,7 +21,9 @@ GetIt $initGetIt(
   EnvironmentFilter environmentFilter,
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
-  gh.factory<SearchBloc>(() => SearchBloc());
+  gh.lazySingleton<MyLocation>(() => MyLocation());
+  gh.lazySingleton<SmsHelper>(() => SmsHelper());
+  gh.lazySingleton<SearchBloc>(() => SearchBloc(get<SmsHelper>()));
 
   // Eager singletons must be registered in the right order
   gh.singleton<MyLocationBloc>(MyLocationBloc(get<MyLocation>()));

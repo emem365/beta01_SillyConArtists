@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
 
+@LazySingleton()
 class MyLocation {
   Location location = Location();
 
