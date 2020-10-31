@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:raahi_server/api_service.dart';
 import 'package:raahi_server/key.dart';
+import 'package:raahi_server/models.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,9 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 ApiService service =
                     Provider.of<ApiService>(context, listen: false);
-                Response response = await service.getDirections(
+                Response<DirectionsResponse> response = await service.getDirections(
                     key, '8.681495,49.41461', '8.687872,49.420318');
-                print(response);
+                print(response.body.features.first.properties.segments);
               },
               child: Text('Press me to print to debug'))),
     );

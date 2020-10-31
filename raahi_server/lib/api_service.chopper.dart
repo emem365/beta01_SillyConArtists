@@ -14,7 +14,8 @@ class _$ApiService extends ApiService {
 
   final definitionType = ApiService;
 
-  Future<Response> getDirections(String apiKey, String start, String end) {
+  Future<Response<DirectionsResponse>> getDirections(
+      String apiKey, String start, String end) {
     final $url = 'directions/driving-car';
     final Map<String, dynamic> $params = {
       'api_key': apiKey,
@@ -22,6 +23,6 @@ class _$ApiService extends ApiService {
       'end': end
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<dynamic, dynamic>($request);
+    return client.send<DirectionsResponse, DirectionsResponse>($request);
   }
 }
