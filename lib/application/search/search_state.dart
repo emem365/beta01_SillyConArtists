@@ -4,13 +4,15 @@ part of 'search_bloc.dart';
 abstract class SearchState with _$SearchState {
   const factory SearchState({
     @required SearchInput searchInput,
-    @required bool showError,
+    @required bool isLoading,
     @required Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption,
+    @required Option<List<QueryResultObject>> resultObjects,
   }) = _SearchState;
 
   factory SearchState.initial() => _SearchState(
         searchInput: SearchInput(''),
-        showError: false,
+        isLoading: false,
         queryFailureOrSuccessOption: none(),
+        resultObjects: none(),
       );
 }

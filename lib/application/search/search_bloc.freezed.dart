@@ -26,8 +26,8 @@ class _$SearchEventTearOff {
   }
 
 // ignore: unused_element
-  _QuerySent querySent() {
-    return const _QuerySent();
+  _QueryResultReceived queryResultReceived() {
+    return const _QueryResultReceived();
   }
 }
 
@@ -41,26 +41,26 @@ mixin _$SearchEvent {
   Result when<Result extends Object>({
     @required Result inputChanged(String input),
     @required Result sendQuery(),
-    @required Result querySent(),
+    @required Result queryResultReceived(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
     Result sendQuery(),
-    Result querySent(),
+    Result queryResultReceived(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result inputChanged(_InputChanged value),
     @required Result sendQuery(_SendQuery value),
-    @required Result querySent(_QuerySent value),
+    @required Result queryResultReceived(_QueryResultReceived value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result inputChanged(_InputChanged value),
     Result sendQuery(_SendQuery value),
-    Result querySent(_QuerySent value),
+    Result queryResultReceived(_QueryResultReceived value),
     @required Result orElse(),
   });
 }
@@ -142,11 +142,11 @@ class _$_InputChanged implements _InputChanged {
   Result when<Result extends Object>({
     @required Result inputChanged(String input),
     @required Result sendQuery(),
-    @required Result querySent(),
+    @required Result queryResultReceived(),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
-    assert(querySent != null);
+    assert(queryResultReceived != null);
     return inputChanged(input);
   }
 
@@ -155,7 +155,7 @@ class _$_InputChanged implements _InputChanged {
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
     Result sendQuery(),
-    Result querySent(),
+    Result queryResultReceived(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -170,11 +170,11 @@ class _$_InputChanged implements _InputChanged {
   Result map<Result extends Object>({
     @required Result inputChanged(_InputChanged value),
     @required Result sendQuery(_SendQuery value),
-    @required Result querySent(_QuerySent value),
+    @required Result queryResultReceived(_QueryResultReceived value),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
-    assert(querySent != null);
+    assert(queryResultReceived != null);
     return inputChanged(this);
   }
 
@@ -183,7 +183,7 @@ class _$_InputChanged implements _InputChanged {
   Result maybeMap<Result extends Object>({
     Result inputChanged(_InputChanged value),
     Result sendQuery(_SendQuery value),
-    Result querySent(_QuerySent value),
+    Result queryResultReceived(_QueryResultReceived value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -240,11 +240,11 @@ class _$_SendQuery implements _SendQuery {
   Result when<Result extends Object>({
     @required Result inputChanged(String input),
     @required Result sendQuery(),
-    @required Result querySent(),
+    @required Result queryResultReceived(),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
-    assert(querySent != null);
+    assert(queryResultReceived != null);
     return sendQuery();
   }
 
@@ -253,7 +253,7 @@ class _$_SendQuery implements _SendQuery {
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
     Result sendQuery(),
-    Result querySent(),
+    Result queryResultReceived(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -268,11 +268,11 @@ class _$_SendQuery implements _SendQuery {
   Result map<Result extends Object>({
     @required Result inputChanged(_InputChanged value),
     @required Result sendQuery(_SendQuery value),
-    @required Result querySent(_QuerySent value),
+    @required Result queryResultReceived(_QueryResultReceived value),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
-    assert(querySent != null);
+    assert(queryResultReceived != null);
     return sendQuery(this);
   }
 
@@ -281,7 +281,7 @@ class _$_SendQuery implements _SendQuery {
   Result maybeMap<Result extends Object>({
     Result inputChanged(_InputChanged value),
     Result sendQuery(_SendQuery value),
-    Result querySent(_QuerySent value),
+    Result queryResultReceived(_QueryResultReceived value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -297,34 +297,36 @@ abstract class _SendQuery implements SearchEvent {
 }
 
 /// @nodoc
-abstract class _$QuerySentCopyWith<$Res> {
-  factory _$QuerySentCopyWith(
-          _QuerySent value, $Res Function(_QuerySent) then) =
-      __$QuerySentCopyWithImpl<$Res>;
+abstract class _$QueryResultReceivedCopyWith<$Res> {
+  factory _$QueryResultReceivedCopyWith(_QueryResultReceived value,
+          $Res Function(_QueryResultReceived) then) =
+      __$QueryResultReceivedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$QuerySentCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
-    implements _$QuerySentCopyWith<$Res> {
-  __$QuerySentCopyWithImpl(_QuerySent _value, $Res Function(_QuerySent) _then)
-      : super(_value, (v) => _then(v as _QuerySent));
+class __$QueryResultReceivedCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res>
+    implements _$QueryResultReceivedCopyWith<$Res> {
+  __$QueryResultReceivedCopyWithImpl(
+      _QueryResultReceived _value, $Res Function(_QueryResultReceived) _then)
+      : super(_value, (v) => _then(v as _QueryResultReceived));
 
   @override
-  _QuerySent get _value => super._value as _QuerySent;
+  _QueryResultReceived get _value => super._value as _QueryResultReceived;
 }
 
 /// @nodoc
-class _$_QuerySent implements _QuerySent {
-  const _$_QuerySent();
+class _$_QueryResultReceived implements _QueryResultReceived {
+  const _$_QueryResultReceived();
 
   @override
   String toString() {
-    return 'SearchEvent.querySent()';
+    return 'SearchEvent.queryResultReceived()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _QuerySent);
+    return identical(this, other) || (other is _QueryResultReceived);
   }
 
   @override
@@ -335,12 +337,12 @@ class _$_QuerySent implements _QuerySent {
   Result when<Result extends Object>({
     @required Result inputChanged(String input),
     @required Result sendQuery(),
-    @required Result querySent(),
+    @required Result queryResultReceived(),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
-    assert(querySent != null);
-    return querySent();
+    assert(queryResultReceived != null);
+    return queryResultReceived();
   }
 
   @override
@@ -348,12 +350,12 @@ class _$_QuerySent implements _QuerySent {
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
     Result sendQuery(),
-    Result querySent(),
+    Result queryResultReceived(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (querySent != null) {
-      return querySent();
+    if (queryResultReceived != null) {
+      return queryResultReceived();
     }
     return orElse();
   }
@@ -363,12 +365,12 @@ class _$_QuerySent implements _QuerySent {
   Result map<Result extends Object>({
     @required Result inputChanged(_InputChanged value),
     @required Result sendQuery(_SendQuery value),
-    @required Result querySent(_QuerySent value),
+    @required Result queryResultReceived(_QueryResultReceived value),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
-    assert(querySent != null);
-    return querySent(this);
+    assert(queryResultReceived != null);
+    return queryResultReceived(this);
   }
 
   @override
@@ -376,19 +378,19 @@ class _$_QuerySent implements _QuerySent {
   Result maybeMap<Result extends Object>({
     Result inputChanged(_InputChanged value),
     Result sendQuery(_SendQuery value),
-    Result querySent(_QuerySent value),
+    Result queryResultReceived(_QueryResultReceived value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (querySent != null) {
-      return querySent(this);
+    if (queryResultReceived != null) {
+      return queryResultReceived(this);
     }
     return orElse();
   }
 }
 
-abstract class _QuerySent implements SearchEvent {
-  const factory _QuerySent() = _$_QuerySent;
+abstract class _QueryResultReceived implements SearchEvent {
+  const factory _QueryResultReceived() = _$_QueryResultReceived;
 }
 
 /// @nodoc
@@ -397,16 +399,15 @@ class _$SearchStateTearOff {
 
 // ignore: unused_element
   _SearchState call(
-      {@required
-          SearchInput searchInput,
-      @required
-          bool showError,
-      @required
-          Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption}) {
+      {@required SearchInput searchInput,
+      @required bool isLoading,
+      @required Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption,
+      @required Option<List<QueryResultObject>> resultObjects}) {
     return _SearchState(
       searchInput: searchInput,
-      showError: showError,
+      isLoading: isLoading,
       queryFailureOrSuccessOption: queryFailureOrSuccessOption,
+      resultObjects: resultObjects,
     );
   }
 }
@@ -418,8 +419,9 @@ const $SearchState = _$SearchStateTearOff();
 /// @nodoc
 mixin _$SearchState {
   SearchInput get searchInput;
-  bool get showError;
+  bool get isLoading;
   Option<Either<QueryFailure, Unit>> get queryFailureOrSuccessOption;
+  Option<List<QueryResultObject>> get resultObjects;
 
   $SearchStateCopyWith<SearchState> get copyWith;
 }
@@ -431,8 +433,9 @@ abstract class $SearchStateCopyWith<$Res> {
       _$SearchStateCopyWithImpl<$Res>;
   $Res call(
       {SearchInput searchInput,
-      bool showError,
-      Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption});
+      bool isLoading,
+      Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption,
+      Option<List<QueryResultObject>> resultObjects});
 }
 
 /// @nodoc
@@ -446,17 +449,21 @@ class _$SearchStateCopyWithImpl<$Res> implements $SearchStateCopyWith<$Res> {
   @override
   $Res call({
     Object searchInput = freezed,
-    Object showError = freezed,
+    Object isLoading = freezed,
     Object queryFailureOrSuccessOption = freezed,
+    Object resultObjects = freezed,
   }) {
     return _then(_value.copyWith(
       searchInput: searchInput == freezed
           ? _value.searchInput
           : searchInput as SearchInput,
-      showError: showError == freezed ? _value.showError : showError as bool,
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       queryFailureOrSuccessOption: queryFailureOrSuccessOption == freezed
           ? _value.queryFailureOrSuccessOption
           : queryFailureOrSuccessOption as Option<Either<QueryFailure, Unit>>,
+      resultObjects: resultObjects == freezed
+          ? _value.resultObjects
+          : resultObjects as Option<List<QueryResultObject>>,
     ));
   }
 }
@@ -470,8 +477,9 @@ abstract class _$SearchStateCopyWith<$Res>
   @override
   $Res call(
       {SearchInput searchInput,
-      bool showError,
-      Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption});
+      bool isLoading,
+      Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption,
+      Option<List<QueryResultObject>> resultObjects});
 }
 
 /// @nodoc
@@ -487,17 +495,21 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object searchInput = freezed,
-    Object showError = freezed,
+    Object isLoading = freezed,
     Object queryFailureOrSuccessOption = freezed,
+    Object resultObjects = freezed,
   }) {
     return _then(_SearchState(
       searchInput: searchInput == freezed
           ? _value.searchInput
           : searchInput as SearchInput,
-      showError: showError == freezed ? _value.showError : showError as bool,
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       queryFailureOrSuccessOption: queryFailureOrSuccessOption == freezed
           ? _value.queryFailureOrSuccessOption
           : queryFailureOrSuccessOption as Option<Either<QueryFailure, Unit>>,
+      resultObjects: resultObjects == freezed
+          ? _value.resultObjects
+          : resultObjects as Option<List<QueryResultObject>>,
     ));
   }
 }
@@ -506,22 +518,26 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
 class _$_SearchState implements _SearchState {
   const _$_SearchState(
       {@required this.searchInput,
-      @required this.showError,
-      @required this.queryFailureOrSuccessOption})
+      @required this.isLoading,
+      @required this.queryFailureOrSuccessOption,
+      @required this.resultObjects})
       : assert(searchInput != null),
-        assert(showError != null),
-        assert(queryFailureOrSuccessOption != null);
+        assert(isLoading != null),
+        assert(queryFailureOrSuccessOption != null),
+        assert(resultObjects != null);
 
   @override
   final SearchInput searchInput;
   @override
-  final bool showError;
+  final bool isLoading;
   @override
   final Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption;
+  @override
+  final Option<List<QueryResultObject>> resultObjects;
 
   @override
   String toString() {
-    return 'SearchState(searchInput: $searchInput, showError: $showError, queryFailureOrSuccessOption: $queryFailureOrSuccessOption)';
+    return 'SearchState(searchInput: $searchInput, isLoading: $isLoading, queryFailureOrSuccessOption: $queryFailureOrSuccessOption, resultObjects: $resultObjects)';
   }
 
   @override
@@ -531,22 +547,26 @@ class _$_SearchState implements _SearchState {
             (identical(other.searchInput, searchInput) ||
                 const DeepCollectionEquality()
                     .equals(other.searchInput, searchInput)) &&
-            (identical(other.showError, showError) ||
+            (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
-                    .equals(other.showError, showError)) &&
+                    .equals(other.isLoading, isLoading)) &&
             (identical(other.queryFailureOrSuccessOption,
                     queryFailureOrSuccessOption) ||
                 const DeepCollectionEquality().equals(
                     other.queryFailureOrSuccessOption,
-                    queryFailureOrSuccessOption)));
+                    queryFailureOrSuccessOption)) &&
+            (identical(other.resultObjects, resultObjects) ||
+                const DeepCollectionEquality()
+                    .equals(other.resultObjects, resultObjects)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(searchInput) ^
-      const DeepCollectionEquality().hash(showError) ^
-      const DeepCollectionEquality().hash(queryFailureOrSuccessOption);
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(queryFailureOrSuccessOption) ^
+      const DeepCollectionEquality().hash(resultObjects);
 
   @override
   _$SearchStateCopyWith<_SearchState> get copyWith =>
@@ -555,20 +575,23 @@ class _$_SearchState implements _SearchState {
 
 abstract class _SearchState implements SearchState {
   const factory _SearchState(
-          {@required
-              SearchInput searchInput,
-          @required
-              bool showError,
-          @required
-              Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption}) =
-      _$_SearchState;
+      {@required
+          SearchInput searchInput,
+      @required
+          bool isLoading,
+      @required
+          Option<Either<QueryFailure, Unit>> queryFailureOrSuccessOption,
+      @required
+          Option<List<QueryResultObject>> resultObjects}) = _$_SearchState;
 
   @override
   SearchInput get searchInput;
   @override
-  bool get showError;
+  bool get isLoading;
   @override
   Option<Either<QueryFailure, Unit>> get queryFailureOrSuccessOption;
+  @override
+  Option<List<QueryResultObject>> get resultObjects;
   @override
   _$SearchStateCopyWith<_SearchState> get copyWith;
 }

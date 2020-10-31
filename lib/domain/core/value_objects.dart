@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:raahi/domain/core/errors.dart';
 import 'package:raahi/domain/core/value_failures.dart';
+import 'package:raahi/domain/core/value_validators.dart';
 
 @immutable
 abstract class ValueObject<T> {
@@ -36,4 +37,18 @@ abstract class ValueObject<T> {
 
   @override
   String toString() => 'Value($value)';
+}
+
+class LocationName extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory LocationName(String input) {
+    assert(input != null);
+    return LocationName._(
+      validateLocationName(input),
+    );
+  }
+
+  const LocationName._(this.value);
 }

@@ -30,6 +30,7 @@ dependencies:
   injectable:
   auto_route:
   location:
+  flutter_sms:
 
 dev_dependencies:
   build_runner:
