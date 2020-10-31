@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
@@ -28,6 +29,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
+    StreamSubscription<bool> msgDelivered;
     yield* event.map(
       inputChanged: (e) async* {
         yield state.copyWith(searchInput: SearchInput(e.input));
@@ -37,6 +39,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         yield state.copyWith(isLoading: true);
         _smsHelper.sendSms(
             '${state.searchInput.getOrCrash()};${e.locationData.latitude};${e.locationData.longitude}');
+        _smsHelper.isMssgDelivered();
+        msgDelivered = _smsHelper.isSmsDeliveredStream.listen((event) {
+          debugPrint('Location Delivered: $event');
+        }, onError: (e) {
+          debugPrint('Some Error occurred $e');
+        });
       },
       queryResultReceived: (e) async* {
         // TODO: Call when query sent successfully

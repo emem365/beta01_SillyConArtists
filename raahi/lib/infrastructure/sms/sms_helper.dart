@@ -13,13 +13,20 @@ class SmsHelper {
 
   final StreamController<bool> isSmsDelivered =
       StreamController<bool>.broadcast();
-
   Stream<bool> isSmsDeliveredStream;
 
+  final StreamController<String> receivedMsg =
+      StreamController<String>.broadcast();
+  Stream<String> receivedMsgStream;
+
   void receivedMessage() {
+    receivedMsgStream = receivedMsg.stream;
     receiver.onSmsReceived.listen((event) {
+      receivedMsg.sink.add(event.body);
       debugPrint("Sms Received from ${event.address} : ${event.body}");
       mssg = event.body;
+    }, onError: (e) {
+      debugPrint('$e');
     });
   }
 
@@ -32,7 +39,6 @@ class SmsHelper {
 
   void isMssgDelivered() {
     isSmsDeliveredStream = isSmsDelivered.stream;
-    bool isRecieved = false;
     sender.onSmsDelivered.listen((event) {
       debugPrint(event.toString());
       isSmsDelivered.sink.add(true);
