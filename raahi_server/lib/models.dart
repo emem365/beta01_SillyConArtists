@@ -2,8 +2,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-
-
 part 'models.g.dart';
 
 abstract class DirectionsResponse implements Built<DirectionsResponse, DirectionsResponseBuilder>{
@@ -95,30 +93,30 @@ abstract class GeoCodeProperties implements Built<GeoCodeProperties, GeoCodeProp
   String get gid;
   String get layer;
   String get source;
-  @BuiltValueField(wireName: 'source-id')
+  @BuiltValueField(wireName: 'source_id')
   String get sourceId;
   String get name;
   int get confidence;
-  @BuiltValueField(wireName: 'match-type')
+  @BuiltValueField(wireName: 'match_type')
   String get matchType;
   String get accuracy;
   String get country;
-  @BuiltValueField(wireName: 'country-gid')
+  @BuiltValueField(wireName: 'country_gid')
   String get countryGid;
-  @BuiltValueField(wireName: 'country-a')
+  @BuiltValueField(wireName: 'country_a')
   String get countryA;
   String get region;
-  @BuiltValueField(wireName: 'region-gid')
+  @BuiltValueField(wireName: 'region_gid')
   String get regionGid;
-  @BuiltValueField(wireName: 'region-a')
+  @BuiltValueField(wireName: 'region_a')
   String get regionA;
   String get county;
-  @BuiltValueField(wireName: 'county-gid')
+  @BuiltValueField(wireName: 'county_gid')
   String get countyGid;
-  @BuiltValueField(wireName: 'county-a')
+  @BuiltValueField(wireName: 'county_a')
   String get countyA;
   String get continent;
-  @BuiltValueField(wireName: 'continent-gid')
+  @BuiltValueField(wireName: 'continent_gid')
   String get continentGid;
   String get label;
   

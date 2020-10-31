@@ -375,7 +375,7 @@ class _$GeoCodePropertiesSerializer
       'source',
       serializers.serialize(object.source,
           specifiedType: const FullType(String)),
-      'source-id',
+      'source_id',
       serializers.serialize(object.sourceId,
           specifiedType: const FullType(String)),
       'name',
@@ -383,7 +383,7 @@ class _$GeoCodePropertiesSerializer
       'confidence',
       serializers.serialize(object.confidence,
           specifiedType: const FullType(int)),
-      'match-type',
+      'match_type',
       serializers.serialize(object.matchType,
           specifiedType: const FullType(String)),
       'accuracy',
@@ -392,34 +392,34 @@ class _$GeoCodePropertiesSerializer
       'country',
       serializers.serialize(object.country,
           specifiedType: const FullType(String)),
-      'country-gid',
+      'country_gid',
       serializers.serialize(object.countryGid,
           specifiedType: const FullType(String)),
-      'country-a',
+      'country_a',
       serializers.serialize(object.countryA,
           specifiedType: const FullType(String)),
       'region',
       serializers.serialize(object.region,
           specifiedType: const FullType(String)),
-      'region-gid',
+      'region_gid',
       serializers.serialize(object.regionGid,
           specifiedType: const FullType(String)),
-      'region-a',
+      'region_a',
       serializers.serialize(object.regionA,
           specifiedType: const FullType(String)),
       'county',
       serializers.serialize(object.county,
           specifiedType: const FullType(String)),
-      'county-gid',
+      'county_gid',
       serializers.serialize(object.countyGid,
           specifiedType: const FullType(String)),
-      'county-a',
+      'county_a',
       serializers.serialize(object.countyA,
           specifiedType: const FullType(String)),
       'continent',
       serializers.serialize(object.continent,
           specifiedType: const FullType(String)),
-      'continent-gid',
+      'continent_gid',
       serializers.serialize(object.continentGid,
           specifiedType: const FullType(String)),
       'label',
@@ -458,7 +458,7 @@ class _$GeoCodePropertiesSerializer
           result.source = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'source-id':
+        case 'source_id':
           result.sourceId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
@@ -470,7 +470,7 @@ class _$GeoCodePropertiesSerializer
           result.confidence = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'match-type':
+        case 'match_type':
           result.matchType = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
@@ -482,11 +482,11 @@ class _$GeoCodePropertiesSerializer
           result.country = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'country-gid':
+        case 'country_gid':
           result.countryGid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'country-a':
+        case 'country_a':
           result.countryA = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
@@ -494,11 +494,11 @@ class _$GeoCodePropertiesSerializer
           result.region = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'region-gid':
+        case 'region_gid':
           result.regionGid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'region-a':
+        case 'region_a':
           result.regionA = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
@@ -506,11 +506,11 @@ class _$GeoCodePropertiesSerializer
           result.county = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'county-gid':
+        case 'county_gid':
           result.countyGid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'county-a':
+        case 'county_a':
           result.countyA = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
@@ -518,7 +518,7 @@ class _$GeoCodePropertiesSerializer
           result.continent = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'continent-gid':
+        case 'continent_gid':
           result.continentGid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;

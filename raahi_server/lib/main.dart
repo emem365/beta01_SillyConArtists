@@ -48,9 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 ApiService service =
                     Provider.of<ApiService>(context, listen: false);
-                Response<DirectionsResponse> response = await service.getDirections(
-                    key, '8.681495,49.41461', '8.687872,49.420318');
-                print(response.body.features.first.properties.segments);
+                // Response<DirectionsResponse> response = await service.getDirections(
+                //     '8.681495,49.41461', '8.687872,49.420318');
+                Response response = await service.getGeoCode(
+                    'Bhopal', '23.249788','77.415637');
+                    
+                print(response.body.toString().substring(100));
               },
               child: Text('Press me to print to debug'))),
     );
