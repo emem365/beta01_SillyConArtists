@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 
 import 'infrastructure/location/my_location.dart';
 import 'application/navigation/my_location/my_location_bloc.dart';
+import 'application/navigation/navigation_bloc.dart';
 import 'application/search/search_bloc.dart';
 import 'infrastructure/sms/sms_helper.dart';
 
@@ -22,6 +23,7 @@ GetIt $initGetIt(
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   gh.lazySingleton<MyLocation>(() => MyLocation());
+  gh.lazySingleton<NavigationBloc>(() => NavigationBloc());
   gh.lazySingleton<SmsHelper>(() => SmsHelper());
   gh.lazySingleton<SearchBloc>(() => SearchBloc(get<SmsHelper>()));
 

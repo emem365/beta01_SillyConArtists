@@ -19,6 +19,7 @@ abstract class DirectionsResponse implements Built<DirectionsResponse, Direction
 abstract class Feature implements Built<Feature, FeatureBuilder> {
   
   Property get properties;
+  Geometry get geometry;
 
   Feature._();
 
@@ -26,6 +27,18 @@ abstract class Feature implements Built<Feature, FeatureBuilder> {
 
   static Serializer<Feature> get serializer => _$featureSerializer;
 }
+
+abstract class Geometry implements Built<Geometry, GeometryBuilder> {
+  
+  BuiltList<BuiltList<double>> get coordinates;
+
+  Geometry._();
+
+  factory Geometry([updates(GeometryBuilder b)]) = _$Geometry;
+
+  static Serializer<Geometry> get serializer => _$geometrySerializer;
+}
+
 
 abstract class Property implements Built<Property, PropertyBuilder> {
   
@@ -40,7 +53,7 @@ abstract class Property implements Built<Property, PropertyBuilder> {
 
 abstract class Segment implements Built<Segment, SegmentBuilder> {
   
-  BuiltList<Step> get steps;  
+  BuiltList<Steps> get steps;  
   Segment._();
 
   factory Segment([updates(SegmentBuilder b)]) = _$Segment;
@@ -48,7 +61,7 @@ abstract class Segment implements Built<Segment, SegmentBuilder> {
   static Serializer<Segment> get serializer => _$segmentSerializer;
 }
 
-abstract class Step implements Built<Step, StepBuilder> {
+abstract class Steps implements Built<Steps, StepsBuilder> {
 
   double get distance;
   double get duration;
@@ -58,11 +71,11 @@ abstract class Step implements Built<Step, StepBuilder> {
   BuiltList<int> get wayPoints;
 
   
-  Step._();
+  Steps._();
 
-  factory Step([updates(StepBuilder b)]) = _$Step;
+  factory Steps([updates(StepsBuilder b)]) = _$Steps;
 
-  static Serializer<Step> get serializer => _$stepSerializer;
+  static Serializer<Steps> get serializer => _$stepsSerializer;
 }
 
 abstract class GeoCodeResponse implements Built<GeoCodeResponse, GeoCodeResponseBuilder>{
@@ -76,15 +89,28 @@ abstract class GeoCodeResponse implements Built<GeoCodeResponse, GeoCodeResponse
   static Serializer<GeoCodeResponse> get serializer => _$geoCodeResponseSerializer;
 
 }
+
 abstract class GeoCodeFeature implements Built<GeoCodeFeature, GeoCodeFeatureBuilder> {
   
   GeoCodeProperties get properties;
+  GeoCodeGeometry get geometry;
 
   GeoCodeFeature._();
 
   factory GeoCodeFeature([updates(GeoCodeFeatureBuilder b)]) = _$GeoCodeFeature;
 
   static Serializer<GeoCodeFeature> get serializer => _$geoCodeFeatureSerializer;
+}
+
+abstract class GeoCodeGeometry implements Built<GeoCodeGeometry, GeoCodeGeometryBuilder> {
+  
+  BuiltList<double> get coordinates;
+
+  GeoCodeGeometry._();
+
+  factory GeoCodeGeometry([updates(GeoCodeGeometryBuilder b)]) = _$GeoCodeGeometry;
+
+  static Serializer<GeoCodeGeometry> get serializer => _$geoCodeGeometrySerializer;
 }
 
 abstract class GeoCodeProperties implements Built<GeoCodeProperties, GeoCodePropertiesBuilder> {
