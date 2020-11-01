@@ -3,8 +3,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:raahi_server/messages.dart';
+import 'package:raahi_server/service_locator.dart';
+import 'package:sms_maintained/sms.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SmsReceiver receiver = SmsReceiver();
+  receiver.onSmsReceived.listen(onMessageReceived);
+  setupLocator();
+  runApp(MyApp());
+}
 
 var colorList = [
   ColorInfo("purple", Colors.purple, Colors.purple[500].toString()),
@@ -29,6 +38,7 @@ class ColorInfo {
   String name;
   MaterialColor color;
   String hex;
+
   ColorInfo(this.name, this.color, this.hex);
 }
 
@@ -78,10 +88,14 @@ class _MyAppState extends State<MyApp> {
                   width: 300,
                   child: Center(
                       child: Text(
-                    'Raahi-server',
-                    style: Theme.of(context).textTheme.headline3.copyWith(
-                        color: Colors.black, fontStyle: FontStyle.italic),
-                  )),
+                        'Raahi-server',
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .headline3
+                            .copyWith(
+                            color: Colors.black, fontStyle: FontStyle.italic),
+                      )),
                 ),
               ),
             ),
@@ -102,7 +116,8 @@ class DemoPainter extends CustomPainter {
   }
 
   void renderDrawing(Canvas canvas, Size size) {
-    canvas.drawPaint(Paint()..color = Colors.black87);
+    canvas.drawPaint(Paint()
+      ..color = Colors.black87);
 
     renderStructure2(canvas, size, iter, colors, 9);
   }
@@ -120,7 +135,8 @@ class DemoPainter extends CustomPainter {
             (size.height / 2) + (distance * tan(distance) * sin(distance)),
           ),
           5.0 - (0.5 * (totalIter - tempIter)),
-          Paint()..color = colors[j].color,
+          Paint()
+            ..color = colors[j].color,
         );
 
         distance = distance + (0.2 + (0.1 * totalIter - tempIter));
