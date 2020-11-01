@@ -15,10 +15,10 @@ class _$QueryResultObjectTearOff {
 
 // ignore: unused_element
   _QueryResultObject call(
-      {@required LocationName name, @required double distance}) {
+      {@required LocationName name, @required String cityName}) {
     return _QueryResultObject(
       name: name,
-      distance: distance,
+      cityName: cityName,
     );
   }
 }
@@ -30,7 +30,7 @@ const $QueryResultObject = _$QueryResultObjectTearOff();
 /// @nodoc
 mixin _$QueryResultObject {
   LocationName get name;
-  double get distance;
+  String get cityName;
 
   $QueryResultObjectCopyWith<QueryResultObject> get copyWith;
 }
@@ -40,7 +40,7 @@ abstract class $QueryResultObjectCopyWith<$Res> {
   factory $QueryResultObjectCopyWith(
           QueryResultObject value, $Res Function(QueryResultObject) then) =
       _$QueryResultObjectCopyWithImpl<$Res>;
-  $Res call({LocationName name, double distance});
+  $Res call({LocationName name, String cityName});
 }
 
 /// @nodoc
@@ -55,11 +55,11 @@ class _$QueryResultObjectCopyWithImpl<$Res>
   @override
   $Res call({
     Object name = freezed,
-    Object distance = freezed,
+    Object cityName = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed ? _value.name : name as LocationName,
-      distance: distance == freezed ? _value.distance : distance as double,
+      cityName: cityName == freezed ? _value.cityName : cityName as String,
     ));
   }
 }
@@ -71,7 +71,7 @@ abstract class _$QueryResultObjectCopyWith<$Res>
           _QueryResultObject value, $Res Function(_QueryResultObject) then) =
       __$QueryResultObjectCopyWithImpl<$Res>;
   @override
-  $Res call({LocationName name, double distance});
+  $Res call({LocationName name, String cityName});
 }
 
 /// @nodoc
@@ -88,11 +88,11 @@ class __$QueryResultObjectCopyWithImpl<$Res>
   @override
   $Res call({
     Object name = freezed,
-    Object distance = freezed,
+    Object cityName = freezed,
   }) {
     return _then(_QueryResultObject(
       name: name == freezed ? _value.name : name as LocationName,
-      distance: distance == freezed ? _value.distance : distance as double,
+      cityName: cityName == freezed ? _value.cityName : cityName as String,
     ));
   }
 }
@@ -101,18 +101,18 @@ class __$QueryResultObjectCopyWithImpl<$Res>
 class _$_QueryResultObject
     with DiagnosticableTreeMixin
     implements _QueryResultObject {
-  const _$_QueryResultObject({@required this.name, @required this.distance})
+  const _$_QueryResultObject({@required this.name, @required this.cityName})
       : assert(name != null),
-        assert(distance != null);
+        assert(cityName != null);
 
   @override
   final LocationName name;
   @override
-  final double distance;
+  final String cityName;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'QueryResultObject(name: $name, distance: $distance)';
+    return 'QueryResultObject(name: $name, cityName: $cityName)';
   }
 
   @override
@@ -121,7 +121,7 @@ class _$_QueryResultObject
     properties
       ..add(DiagnosticsProperty('type', 'QueryResultObject'))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('distance', distance));
+      ..add(DiagnosticsProperty('cityName', cityName));
   }
 
   @override
@@ -130,16 +130,16 @@ class _$_QueryResultObject
         (other is _QueryResultObject &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.distance, distance) ||
+            (identical(other.cityName, cityName) ||
                 const DeepCollectionEquality()
-                    .equals(other.distance, distance)));
+                    .equals(other.cityName, cityName)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(distance);
+      const DeepCollectionEquality().hash(cityName);
 
   @override
   _$QueryResultObjectCopyWith<_QueryResultObject> get copyWith =>
@@ -149,12 +149,12 @@ class _$_QueryResultObject
 abstract class _QueryResultObject implements QueryResultObject {
   const factory _QueryResultObject(
       {@required LocationName name,
-      @required double distance}) = _$_QueryResultObject;
+      @required String cityName}) = _$_QueryResultObject;
 
   @override
   LocationName get name;
   @override
-  double get distance;
+  String get cityName;
   @override
   _$QueryResultObjectCopyWith<_QueryResultObject> get copyWith;
 }
