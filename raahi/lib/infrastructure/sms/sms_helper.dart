@@ -17,7 +17,7 @@ import '../../injection.dart';
 class SmsHelper {
   final MyLocation _myLocation = getIt<MyLocation>();
   final SmsSender sender = SmsSender();
-  final String address = '+919826092380';
+  final String address = '+917009937626';
   final SmsReceiver receiver = SmsReceiver();
   String mssg = 'Message not received to me yet';
 
@@ -31,7 +31,7 @@ class SmsHelper {
   List<QueryResultObject> places = [];
   List<NavigationInstruction> instructions = [];
 
-  int nextInstructionIndex;
+  int nextInstructionIndex = -1;
 
   void receivedMessage() {
     receivedMsgStream = receivedMsg.stream;
@@ -53,14 +53,16 @@ class SmsHelper {
           //S1@instruction;instructionType;distance;
           //instruction;instructionType;distance;instruction;instructionType;distance;
           for (int i = 0; i < len; i = i + 3) {
-            int type = int.parse(data[i + 2]);
+            int type = int.parse(data[i + 1]);
             InstructionType instructionType;
-            if (type == 1) {
+            if (type == 0) {
               instructionType = const InstructionType.left();
-            } else if (type == 2) {
+            } else if (type == 1) {
               instructionType = const InstructionType.right();
-            } else if (type == 3) {
+            } else if (type == 2) {
               instructionType = const InstructionType.sharpLeft();
+            } else if (type == 3) {
+              instructionType = const InstructionType.sharpRight();
             } else if (type == 4) {
               instructionType = const InstructionType.slightLeft();
             } else if (type == 5) {
@@ -104,7 +106,20 @@ class SmsHelper {
     nextInstructionIndex += 1;
     if (nextInstructionIndex == instructions.length) {
       //R2@latitude;longitude
-      instructions = [];
+      instructions = [
+        NavigationInstruction(
+            instruction: "Head northwest",
+            type: InstructionType.depart(),
+            distance: 34.5),
+        NavigationInstruction(
+            instruction: "Turn Left",
+            type: InstructionType.left(),
+            distance: 223.8),
+        NavigationInstruction(
+            instruction: "Turn Left and you've reached",
+            type: InstructionType.goal(),
+            distance: 5151.8),
+      ];
       nextInstructionIndex = 0;
       LocationData loc = await _myLocation.getLocationData();
       sendSms('R2@${loc.latitude};${loc.longitude}');
