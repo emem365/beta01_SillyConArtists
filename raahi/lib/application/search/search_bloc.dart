@@ -50,26 +50,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         });
       },
       queryResultReceived: (e) async* {
-        List<QueryResultObject> places = [];
-        msgReceived = _smsHelper.receivedMsgStream.listen((event) {
-          String msg = event.substring(0, 3);
-          String instruction = event.substring(3);
-          List<String> data = instruction.split(';');
-          int len = data.length;
-          switch (msg) {
-            case 'S0':
-              //This means a list of probable places
-              //S0@placeName;placeCity;placeName;placeCity;placeName;placeCity
-
-              for (int i = 0; i < len; i = i + 2) {
-                places.add(QueryResultObject(
-                    name: LocationName(data[i]), cityName: data[i + 1]));
-              }
-              break;
-            case 'S1':
-            default:
-          }
-        });
+        msgReceived = _smsHelper.receivedMsgStream.listen((event) {});
         // TODO: Call when query sent successfully
         if (isSent) {
           yield state.copyWith(
