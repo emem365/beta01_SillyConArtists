@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:raahi/application/navigation/navigation_bloc.dart';
 import 'package:raahi/domain/navigation/instruction_type.dart';
+import 'package:raahi/domain/search/query_result_object.dart';
 import 'package:raahi/injection.dart';
 
 class Navigation extends StatelessWidget {
+  final QueryResultObject resultObject;
+
+  const Navigation({@required this.resultObject});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<NavigationBloc>(),
+      create: (context) => getIt<NavigationBloc>()..add(NavigationEvent.start(resultObject: null)),
       child: BlocBuilder<NavigationBloc, NavigationState>(
         builder: (context, state) => Scaffold(
           backgroundColor: const Color(0xff073642),
@@ -33,7 +38,7 @@ class Navigation extends StatelessWidget {
                       exitRoundabout: (_) => Icons.all_out_rounded,
                       uTurn: (_) => Icons.arrow_downward_rounded,
                       goal: (_) => Icons.done_outline_rounded,
-                      depart: (_) => Icons.cancel,
+                      depart: (_) => Icons.arrow_upward_rounded,
                       keepLeft: (_) => Icons.chevron_left_rounded,
                       keepRight: (_) => Icons.chevron_right_rounded,
                     ),
