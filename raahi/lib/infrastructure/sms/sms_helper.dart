@@ -92,7 +92,6 @@ class SmsHelper {
         default:
           debugPrint('Ignore the message');
       }
-
       receivedMsg.sink.add(event.body);
       debugPrint("Sms Received from ${event.address} : ${event.body}");
       mssg = event.body;
