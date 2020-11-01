@@ -17,7 +17,7 @@ import '../../injection.dart';
 class SmsHelper {
   final MyLocation _myLocation = getIt<MyLocation>();
   final SmsSender sender = SmsSender();
-  final String address = '+917009937626';
+  final String address = '+917000842287';
   final SmsReceiver receiver = SmsReceiver();
   String mssg = 'Message not received to me yet';
 
