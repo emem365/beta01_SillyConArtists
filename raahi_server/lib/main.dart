@@ -86,23 +86,27 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             RaisedButton(
                 onPressed: () async {
-                  _formKey.currentState.save();
+                  onMessageReceived(SmsMessage(
+                    '+917009937626',
+                    'R1@0;28.7314161;77.0376372'
+                  ));
+                  // _formKey.currentState.save();
 
-                  ApiService service =
-                      Provider.of<ApiService>(context, listen: false);
-                  response = await service.getDirections(
-                      '$startLat,$startLon', '$endLat,$endLon');
-                  final points = response
-                      .body.features.first.geometry.coordinates
-                      .map((coord) => coord.toList())
-                      .toList();
-                  final poly =
-                      Polyline.Encode(decodedCoords: points, precision: 5);
-                  decodedpoints = Polyline.Decode(
-                      encodedString: poly.encodedString, precision: 5);
-                  print(
-                      'String: ${poly.encodedString.length} ${points.length}');
-                  setState(() {});
+                  // ApiService service =
+                  //     Provider.of<ApiService>(context, listen: false);
+                  // response = await service.getDirections(
+                  //     '$startLat,$startLon', '$endLat,$endLon');
+                  // final points = response
+                  //     .body.features.first.geometry.coordinates
+                  //     .map((coord) => coord.toList())
+                  //     .toList();
+                  // final poly =
+                  //     Polyline.Encode(decodedCoords: points, precision: 5);
+                  // decodedpoints = Polyline.Decode(
+                  //     encodedString: poly.encodedString, precision: 5);
+                  // print(
+                  //     'String: ${poly.encodedString.length} ${points.length}');
+                  // setState(() {});
                 },
                 child: Text('Press me ')),
             SizedBox(height: 25),

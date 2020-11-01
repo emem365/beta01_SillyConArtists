@@ -49,13 +49,16 @@ void processR0String(SmsMessage message) async {
     List<GeoCodeFeature> response = await locator<AppState>()
         .query(message.address, parts[0], parts[1], parts[2])
         .catchError((e) {
-      print('Error');
+      print('Error: $e');
     });
     String responseString = 'S0@';
     response?.sublist(0, min(3, response.length))?.forEach((element) {
       responseString +=
-          '${element.properties.name};${element.properties.county}';
+          '${element.properties.name};${element.properties.county};';
     });
+    if(responseString.endsWith(';')){
+      responseString = responseString.substring(0, responseString.length-1);
+    }
     if (responseString == 'S0@') responseString = 'ERROR';
     locator<SmsSender>().sendSms(SmsMessage(message.address, responseString));
   }
@@ -90,15 +93,22 @@ void processR2String(SmsMessage message) async {
 
 Future sendPath(SmsMessage message, String lat, String lon) async {
   try {
-    List<Steps> steps =
-        await locator<AppState>().getpath(message.address, lat, lon);
+    List<Steps> steps = await locator<AppState>()
+        .getpath(message.address, lat, lon)
+        .catchError((e) {
+      print('Error message: ${e.toString()}');
+    });
     String pathString = 'S1@';
     steps?.sublist(0, min(3, steps.length))?.forEach((element) {
       pathString +=
-          '${element.instruction};${element.type};${element.distance}';
+          '${element.instruction};${element.type};${element.distance};';
     });
+    if(pathString.endsWith(';')){
+      pathString = pathString.substring(0, pathString.length-1);
+    }
     if (pathString == 'S0@') throw Exception();
-    locator<SmsSender>().sendSms(SmsMessage(message.address, pathString));
+    print('666->pathString');
+    await locator<SmsSender>().sendSms(SmsMessage(message.address, pathString));
     List<List<double>> points =
         locator<AppState>().getPathPoints(message.address);
     points = points.sublist(0, min(60, points.length));
@@ -108,7 +118,11 @@ Future sendPath(SmsMessage message, String lat, String lon) async {
     }
 
     final poly = Polyline.Encode(decodedCoords: pointsSkipAlt, precision: 5);
-    locator<SmsSender>()
-        .sendSms(SmsMessage(message.address, poly.encodedString));
+    print('---.>>>> ${poly.encodedString}');
+    
+    
+    // await locator<SmsSender>()
+    //     .sendSms(SmsMessage(message.address, poly.encodedString));
+        
   } catch (e) {}
 }

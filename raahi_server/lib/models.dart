@@ -116,34 +116,54 @@ abstract class GeoCodeGeometry implements Built<GeoCodeGeometry, GeoCodeGeometry
 abstract class GeoCodeProperties implements Built<GeoCodeProperties, GeoCodePropertiesBuilder> {
   
   String get id;
+  @nullable
   String get gid;
+  @nullable
   String get layer;
+  @nullable
   String get source;
+  @nullable
   @BuiltValueField(wireName: 'source_id')
   String get sourceId;
+  @nullable
   String get name;
+  @nullable
   int get confidence;
+  @nullable
   @BuiltValueField(wireName: 'match_type')
   String get matchType;
+  @nullable
   String get accuracy;
+  @nullable
   String get country;
+  @nullable
   @BuiltValueField(wireName: 'country_gid')
   String get countryGid;
+  @nullable
   @BuiltValueField(wireName: 'country_a')
   String get countryA;
+  @nullable
   String get region;
+  @nullable
   @BuiltValueField(wireName: 'region_gid')
   String get regionGid;
+  @nullable
   @BuiltValueField(wireName: 'region_a')
   String get regionA;
+  @nullable
   String get county;
+  @nullable
   @BuiltValueField(wireName: 'county_gid')
   String get countyGid;
+  @nullable
   @BuiltValueField(wireName: 'county_a')
   String get countyA;
+  @nullable
   String get continent;
+  @nullable
   @BuiltValueField(wireName: 'continent_gid')
   String get continentGid;
+  @nullable
   String get label;
   
   GeoCodeProperties._();

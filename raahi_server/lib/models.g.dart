@@ -474,66 +474,127 @@ class _$GeoCodePropertiesSerializer
     final result = <Object>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'gid',
-      serializers.serialize(object.gid, specifiedType: const FullType(String)),
-      'layer',
-      serializers.serialize(object.layer,
-          specifiedType: const FullType(String)),
-      'source',
-      serializers.serialize(object.source,
-          specifiedType: const FullType(String)),
-      'source_id',
-      serializers.serialize(object.sourceId,
-          specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'confidence',
-      serializers.serialize(object.confidence,
-          specifiedType: const FullType(int)),
-      'match_type',
-      serializers.serialize(object.matchType,
-          specifiedType: const FullType(String)),
-      'accuracy',
-      serializers.serialize(object.accuracy,
-          specifiedType: const FullType(String)),
-      'country',
-      serializers.serialize(object.country,
-          specifiedType: const FullType(String)),
-      'country_gid',
-      serializers.serialize(object.countryGid,
-          specifiedType: const FullType(String)),
-      'country_a',
-      serializers.serialize(object.countryA,
-          specifiedType: const FullType(String)),
-      'region',
-      serializers.serialize(object.region,
-          specifiedType: const FullType(String)),
-      'region_gid',
-      serializers.serialize(object.regionGid,
-          specifiedType: const FullType(String)),
-      'region_a',
-      serializers.serialize(object.regionA,
-          specifiedType: const FullType(String)),
-      'county',
-      serializers.serialize(object.county,
-          specifiedType: const FullType(String)),
-      'county_gid',
-      serializers.serialize(object.countyGid,
-          specifiedType: const FullType(String)),
-      'county_a',
-      serializers.serialize(object.countyA,
-          specifiedType: const FullType(String)),
-      'continent',
-      serializers.serialize(object.continent,
-          specifiedType: const FullType(String)),
-      'continent_gid',
-      serializers.serialize(object.continentGid,
-          specifiedType: const FullType(String)),
-      'label',
-      serializers.serialize(object.label,
-          specifiedType: const FullType(String)),
     ];
-
+    if (object.gid != null) {
+      result
+        ..add('gid')
+        ..add(serializers.serialize(object.gid,
+            specifiedType: const FullType(String)));
+    }
+    if (object.layer != null) {
+      result
+        ..add('layer')
+        ..add(serializers.serialize(object.layer,
+            specifiedType: const FullType(String)));
+    }
+    if (object.source != null) {
+      result
+        ..add('source')
+        ..add(serializers.serialize(object.source,
+            specifiedType: const FullType(String)));
+    }
+    if (object.sourceId != null) {
+      result
+        ..add('source_id')
+        ..add(serializers.serialize(object.sourceId,
+            specifiedType: const FullType(String)));
+    }
+    if (object.name != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(object.name,
+            specifiedType: const FullType(String)));
+    }
+    if (object.confidence != null) {
+      result
+        ..add('confidence')
+        ..add(serializers.serialize(object.confidence,
+            specifiedType: const FullType(int)));
+    }
+    if (object.matchType != null) {
+      result
+        ..add('match_type')
+        ..add(serializers.serialize(object.matchType,
+            specifiedType: const FullType(String)));
+    }
+    if (object.accuracy != null) {
+      result
+        ..add('accuracy')
+        ..add(serializers.serialize(object.accuracy,
+            specifiedType: const FullType(String)));
+    }
+    if (object.country != null) {
+      result
+        ..add('country')
+        ..add(serializers.serialize(object.country,
+            specifiedType: const FullType(String)));
+    }
+    if (object.countryGid != null) {
+      result
+        ..add('country_gid')
+        ..add(serializers.serialize(object.countryGid,
+            specifiedType: const FullType(String)));
+    }
+    if (object.countryA != null) {
+      result
+        ..add('country_a')
+        ..add(serializers.serialize(object.countryA,
+            specifiedType: const FullType(String)));
+    }
+    if (object.region != null) {
+      result
+        ..add('region')
+        ..add(serializers.serialize(object.region,
+            specifiedType: const FullType(String)));
+    }
+    if (object.regionGid != null) {
+      result
+        ..add('region_gid')
+        ..add(serializers.serialize(object.regionGid,
+            specifiedType: const FullType(String)));
+    }
+    if (object.regionA != null) {
+      result
+        ..add('region_a')
+        ..add(serializers.serialize(object.regionA,
+            specifiedType: const FullType(String)));
+    }
+    if (object.county != null) {
+      result
+        ..add('county')
+        ..add(serializers.serialize(object.county,
+            specifiedType: const FullType(String)));
+    }
+    if (object.countyGid != null) {
+      result
+        ..add('county_gid')
+        ..add(serializers.serialize(object.countyGid,
+            specifiedType: const FullType(String)));
+    }
+    if (object.countyA != null) {
+      result
+        ..add('county_a')
+        ..add(serializers.serialize(object.countyA,
+            specifiedType: const FullType(String)));
+    }
+    if (object.continent != null) {
+      result
+        ..add('continent')
+        ..add(serializers.serialize(object.continent,
+            specifiedType: const FullType(String)));
+    }
+    if (object.continentGid != null) {
+      result
+        ..add('continent_gid')
+        ..add(serializers.serialize(object.continentGid,
+            specifiedType: const FullType(String)));
+    }
+    if (object.label != null) {
+      result
+        ..add('label')
+        ..add(serializers.serialize(object.label,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -1661,66 +1722,6 @@ class _$GeoCodeProperties extends GeoCodeProperties {
       : super._() {
     if (id == null) {
       throw new BuiltValueNullFieldError('GeoCodeProperties', 'id');
-    }
-    if (gid == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'gid');
-    }
-    if (layer == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'layer');
-    }
-    if (source == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'source');
-    }
-    if (sourceId == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'sourceId');
-    }
-    if (name == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'name');
-    }
-    if (confidence == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'confidence');
-    }
-    if (matchType == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'matchType');
-    }
-    if (accuracy == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'accuracy');
-    }
-    if (country == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'country');
-    }
-    if (countryGid == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'countryGid');
-    }
-    if (countryA == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'countryA');
-    }
-    if (region == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'region');
-    }
-    if (regionGid == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'regionGid');
-    }
-    if (regionA == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'regionA');
-    }
-    if (county == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'county');
-    }
-    if (countyGid == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'countyGid');
-    }
-    if (countyA == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'countyA');
-    }
-    if (continent == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'continent');
-    }
-    if (continentGid == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'continentGid');
-    }
-    if (label == null) {
-      throw new BuiltValueNullFieldError('GeoCodeProperties', 'label');
     }
   }
 
