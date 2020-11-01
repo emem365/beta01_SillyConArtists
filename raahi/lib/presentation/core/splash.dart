@@ -36,15 +36,15 @@ class Splash extends StatelessWidget {
           (_) => ExtendedNavigator.of(context).replace(Routes.home),
         );
       },
-      child: const Material(
-        color: Color(0xff002b36),
+      child: Material(
+        color: const Color(0xff002b36),
         child: Center(
           child: Hero(
             tag: 'logo',
-            child: CircleAvatar(
-              backgroundColor: Color(0xffb58900),
-              radius: 48.0,
-              child: Text('Logo'),
+            child: Image.asset(
+              'assets/icon.png',
+              width: 96.0,
+              height: 96.0,
             ),
           ),
         ),
