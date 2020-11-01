@@ -42,7 +42,7 @@ Either<ValueFailure<String>, String> validateSearchInput(String input) {
       validateSingleLine(input);
   if (maxLengthFailureOrString.isLeft()) {
     return left(ValueFailure.exceedingLength(
-        failedValue: input, max: 50)); // TODO: Check for max length of query
+        failedValue: input, max: 50));
   }
   if (emptyOrString.isLeft()) {
     return left(ValueFailure.empty(failedValue: input));
