@@ -38,6 +38,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
           isLoading: false, instructionOption: some(nextInstruction));
       },
       nextInstruction: (e) async* {
+        yield state.copyWith(isLoading: true);
         final NavigationInstruction nextInstruction =
             await _smsHelper.getNextInstruction();
 
