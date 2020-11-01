@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
-import 'package:raahi/domain/navigation/coordinate_point.dart';
+import 'package:raahi/domain/navigation/navigation_instruction.dart';
 
 part 'navigation_event.dart';
 
@@ -22,9 +22,15 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
     NavigationEvent event,
   ) async* {
     yield* event.map(
-      start: (e) async* {},
-      reRoute: (e) async* {},
-      stop: (e) async* {},
+      start: (e) async* {
+
+      },
+      nextInstruction: (e) async* {
+
+      },
+      stop: (e) async* {
+
+      },
     );
   }
 }
