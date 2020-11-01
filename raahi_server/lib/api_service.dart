@@ -13,9 +13,11 @@ abstract class ApiService extends ChopperService {
 
   @Get(path: 'geocode/search')
   Future<Response<GeoCodeResponse>> getGeoCode(
-      @Query('text') String text,
-      @Query('focus.point.lat') String latitude,
-      @Query('focus.point.lon') String longitude);
+    @Query('text') String text,
+    @Query('focus.point.lat') String latitude,
+    @Query('focus.point.lon') String longitude, {
+    @Query('boundary.country') String country = 'IND',
+  });
 
   static ApiService create() {
     final client = ChopperClient(

@@ -4,7 +4,9 @@ import 'api_service.dart';
 
 class AppState {
   final ApiService apiService;
-  AppState() : apiService = ApiService.create();
+  AppState() : apiService = ApiService.create() {
+    consumers = Map<String, ConsumerState>();
+  }
 
   Map<String, ConsumerState> consumers;
 
@@ -33,10 +35,10 @@ class AppState {
         getState(address).lastQueryResults = response.body.features.toList();
         return response.body.features.toList();
       } else {
-        return Future.error('ERROR');
+        return Future.error('Error: ${response.statusCode}');
       }
     } catch (e) {
-      return Future.error('ERROR');
+      return Future.error(e.message);
     }
   }
 
@@ -62,24 +64,24 @@ class AppState {
   Future<List<Steps>> getpath(String address, String lat, String lon) async {
     try {
       if (!consumers.containsKey(address)) {
-        return Future.error('ERROR');
+        return Future.error('KEY DOESNT EXIST');
       }
       if (getState(address).destinationCoords == null) {
-        return Future.error('ERROR');
+        return Future.error('DESTINATION COORDS DONT EXIST');
       }
       String endCoords = getState(address).destinationCoords.join(',');
       Response<DirectionsResponse> response =
-          await apiService.getDirections('$lat,$lon', endCoords);
+          await apiService.getDirections('$lon,$lat', endCoords);
 
       if (response.isSuccessful) {
         getState(address).lastSuggestedPath = response.body;
         return response.body.features.first.properties.segments.first.steps
             .toList();
       } else {
-        return Future.error('ERROR');
+        return Future.error(response.statusCode);
       }
     } catch (e) {
-      return Future.error('ERROR');
+      return Future.error(e);
     }
   }
 }

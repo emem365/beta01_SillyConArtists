@@ -22,12 +22,14 @@ class _$ApiService extends ApiService {
   }
 
   Future<Response<GeoCodeResponse>> getGeoCode(
-      String text, String latitude, String longitude) {
+      String text, String latitude, String longitude,
+      {String country = 'IND'}) {
     final $url = 'geocode/search';
     final Map<String, dynamic> $params = {
       'text': text,
       'focus.point.lat': latitude,
-      'focus.point.lon': longitude
+      'focus.point.lon': longitude,
+      'boundary.country': country
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<GeoCodeResponse, GeoCodeResponse>($request);
