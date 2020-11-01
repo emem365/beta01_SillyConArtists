@@ -19,8 +19,8 @@ class _$NavigationEventTearOff {
   }
 
 // ignore: unused_element
-  _ReRoute reRoute() {
-    return const _ReRoute();
+  _NextInstruction nextInstruction() {
+    return const _NextInstruction();
   }
 
 // ignore: unused_element
@@ -38,26 +38,26 @@ mixin _$NavigationEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result start(),
-    @required Result reRoute(),
+    @required Result nextInstruction(),
     @required Result stop(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result start(),
-    Result reRoute(),
+    Result nextInstruction(),
     Result stop(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result start(_Start value),
-    @required Result reRoute(_ReRoute value),
+    @required Result nextInstruction(_NextInstruction value),
     @required Result stop(_Stop value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result start(_Start value),
-    Result reRoute(_ReRoute value),
+    Result nextInstruction(_NextInstruction value),
     Result stop(_Stop value),
     @required Result orElse(),
   });
@@ -117,11 +117,11 @@ class _$_Start implements _Start {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result start(),
-    @required Result reRoute(),
+    @required Result nextInstruction(),
     @required Result stop(),
   }) {
     assert(start != null);
-    assert(reRoute != null);
+    assert(nextInstruction != null);
     assert(stop != null);
     return start();
   }
@@ -130,7 +130,7 @@ class _$_Start implements _Start {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result start(),
-    Result reRoute(),
+    Result nextInstruction(),
     Result stop(),
     @required Result orElse(),
   }) {
@@ -145,11 +145,11 @@ class _$_Start implements _Start {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result start(_Start value),
-    @required Result reRoute(_ReRoute value),
+    @required Result nextInstruction(_NextInstruction value),
     @required Result stop(_Stop value),
   }) {
     assert(start != null);
-    assert(reRoute != null);
+    assert(nextInstruction != null);
     assert(stop != null);
     return start(this);
   }
@@ -158,7 +158,7 @@ class _$_Start implements _Start {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result start(_Start value),
-    Result reRoute(_ReRoute value),
+    Result nextInstruction(_NextInstruction value),
     Result stop(_Stop value),
     @required Result orElse(),
   }) {
@@ -175,33 +175,36 @@ abstract class _Start implements NavigationEvent {
 }
 
 /// @nodoc
-abstract class _$ReRouteCopyWith<$Res> {
-  factory _$ReRouteCopyWith(_ReRoute value, $Res Function(_ReRoute) then) =
-      __$ReRouteCopyWithImpl<$Res>;
+abstract class _$NextInstructionCopyWith<$Res> {
+  factory _$NextInstructionCopyWith(
+          _NextInstruction value, $Res Function(_NextInstruction) then) =
+      __$NextInstructionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ReRouteCopyWithImpl<$Res> extends _$NavigationEventCopyWithImpl<$Res>
-    implements _$ReRouteCopyWith<$Res> {
-  __$ReRouteCopyWithImpl(_ReRoute _value, $Res Function(_ReRoute) _then)
-      : super(_value, (v) => _then(v as _ReRoute));
+class __$NextInstructionCopyWithImpl<$Res>
+    extends _$NavigationEventCopyWithImpl<$Res>
+    implements _$NextInstructionCopyWith<$Res> {
+  __$NextInstructionCopyWithImpl(
+      _NextInstruction _value, $Res Function(_NextInstruction) _then)
+      : super(_value, (v) => _then(v as _NextInstruction));
 
   @override
-  _ReRoute get _value => super._value as _ReRoute;
+  _NextInstruction get _value => super._value as _NextInstruction;
 }
 
 /// @nodoc
-class _$_ReRoute implements _ReRoute {
-  const _$_ReRoute();
+class _$_NextInstruction implements _NextInstruction {
+  const _$_NextInstruction();
 
   @override
   String toString() {
-    return 'NavigationEvent.reRoute()';
+    return 'NavigationEvent.nextInstruction()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ReRoute);
+    return identical(this, other) || (other is _NextInstruction);
   }
 
   @override
@@ -211,26 +214,26 @@ class _$_ReRoute implements _ReRoute {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result start(),
-    @required Result reRoute(),
+    @required Result nextInstruction(),
     @required Result stop(),
   }) {
     assert(start != null);
-    assert(reRoute != null);
+    assert(nextInstruction != null);
     assert(stop != null);
-    return reRoute();
+    return nextInstruction();
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result start(),
-    Result reRoute(),
+    Result nextInstruction(),
     Result stop(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (reRoute != null) {
-      return reRoute();
+    if (nextInstruction != null) {
+      return nextInstruction();
     }
     return orElse();
   }
@@ -239,33 +242,33 @@ class _$_ReRoute implements _ReRoute {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result start(_Start value),
-    @required Result reRoute(_ReRoute value),
+    @required Result nextInstruction(_NextInstruction value),
     @required Result stop(_Stop value),
   }) {
     assert(start != null);
-    assert(reRoute != null);
+    assert(nextInstruction != null);
     assert(stop != null);
-    return reRoute(this);
+    return nextInstruction(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result start(_Start value),
-    Result reRoute(_ReRoute value),
+    Result nextInstruction(_NextInstruction value),
     Result stop(_Stop value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (reRoute != null) {
-      return reRoute(this);
+    if (nextInstruction != null) {
+      return nextInstruction(this);
     }
     return orElse();
   }
 }
 
-abstract class _ReRoute implements NavigationEvent {
-  const factory _ReRoute() = _$_ReRoute;
+abstract class _NextInstruction implements NavigationEvent {
+  const factory _NextInstruction() = _$_NextInstruction;
 }
 
 /// @nodoc
@@ -305,11 +308,11 @@ class _$_Stop implements _Stop {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result start(),
-    @required Result reRoute(),
+    @required Result nextInstruction(),
     @required Result stop(),
   }) {
     assert(start != null);
-    assert(reRoute != null);
+    assert(nextInstruction != null);
     assert(stop != null);
     return stop();
   }
@@ -318,7 +321,7 @@ class _$_Stop implements _Stop {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result start(),
-    Result reRoute(),
+    Result nextInstruction(),
     Result stop(),
     @required Result orElse(),
   }) {
@@ -333,11 +336,11 @@ class _$_Stop implements _Stop {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result start(_Start value),
-    @required Result reRoute(_ReRoute value),
+    @required Result nextInstruction(_NextInstruction value),
     @required Result stop(_Stop value),
   }) {
     assert(start != null);
-    assert(reRoute != null);
+    assert(nextInstruction != null);
     assert(stop != null);
     return stop(this);
   }
@@ -346,7 +349,7 @@ class _$_Stop implements _Stop {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result start(_Start value),
-    Result reRoute(_ReRoute value),
+    Result nextInstruction(_NextInstruction value),
     Result stop(_Stop value),
     @required Result orElse(),
   }) {
@@ -369,13 +372,11 @@ class _$NavigationStateTearOff {
 // ignore: unused_element
   _NavigationState call(
       {@required bool isLoading,
-      @required Option<List<CoordinatePoint>> points,
-      @required bool reRouting,
+      @required Option<NavigationInstruction> instructionOption,
       @required bool finished}) {
     return _NavigationState(
       isLoading: isLoading,
-      points: points,
-      reRouting: reRouting,
+      instructionOption: instructionOption,
       finished: finished,
     );
   }
@@ -388,8 +389,7 @@ const $NavigationState = _$NavigationStateTearOff();
 /// @nodoc
 mixin _$NavigationState {
   bool get isLoading;
-  Option<List<CoordinatePoint>> get points;
-  bool get reRouting;
+  Option<NavigationInstruction> get instructionOption;
   bool get finished;
 
   $NavigationStateCopyWith<NavigationState> get copyWith;
@@ -402,8 +402,7 @@ abstract class $NavigationStateCopyWith<$Res> {
       _$NavigationStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
-      Option<List<CoordinatePoint>> points,
-      bool reRouting,
+      Option<NavigationInstruction> instructionOption,
       bool finished});
 }
 
@@ -419,16 +418,14 @@ class _$NavigationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object isLoading = freezed,
-    Object points = freezed,
-    Object reRouting = freezed,
+    Object instructionOption = freezed,
     Object finished = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
-      points: points == freezed
-          ? _value.points
-          : points as Option<List<CoordinatePoint>>,
-      reRouting: reRouting == freezed ? _value.reRouting : reRouting as bool,
+      instructionOption: instructionOption == freezed
+          ? _value.instructionOption
+          : instructionOption as Option<NavigationInstruction>,
       finished: finished == freezed ? _value.finished : finished as bool,
     ));
   }
@@ -443,8 +440,7 @@ abstract class _$NavigationStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoading,
-      Option<List<CoordinatePoint>> points,
-      bool reRouting,
+      Option<NavigationInstruction> instructionOption,
       bool finished});
 }
 
@@ -462,16 +458,14 @@ class __$NavigationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object isLoading = freezed,
-    Object points = freezed,
-    Object reRouting = freezed,
+    Object instructionOption = freezed,
     Object finished = freezed,
   }) {
     return _then(_NavigationState(
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
-      points: points == freezed
-          ? _value.points
-          : points as Option<List<CoordinatePoint>>,
-      reRouting: reRouting == freezed ? _value.reRouting : reRouting as bool,
+      instructionOption: instructionOption == freezed
+          ? _value.instructionOption
+          : instructionOption as Option<NavigationInstruction>,
       finished: finished == freezed ? _value.finished : finished as bool,
     ));
   }
@@ -481,26 +475,22 @@ class __$NavigationStateCopyWithImpl<$Res>
 class _$_NavigationState implements _NavigationState {
   const _$_NavigationState(
       {@required this.isLoading,
-      @required this.points,
-      @required this.reRouting,
+      @required this.instructionOption,
       @required this.finished})
       : assert(isLoading != null),
-        assert(points != null),
-        assert(reRouting != null),
+        assert(instructionOption != null),
         assert(finished != null);
 
   @override
   final bool isLoading;
   @override
-  final Option<List<CoordinatePoint>> points;
-  @override
-  final bool reRouting;
+  final Option<NavigationInstruction> instructionOption;
   @override
   final bool finished;
 
   @override
   String toString() {
-    return 'NavigationState(isLoading: $isLoading, points: $points, reRouting: $reRouting, finished: $finished)';
+    return 'NavigationState(isLoading: $isLoading, instructionOption: $instructionOption, finished: $finished)';
   }
 
   @override
@@ -510,11 +500,9 @@ class _$_NavigationState implements _NavigationState {
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
                     .equals(other.isLoading, isLoading)) &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
-            (identical(other.reRouting, reRouting) ||
+            (identical(other.instructionOption, instructionOption) ||
                 const DeepCollectionEquality()
-                    .equals(other.reRouting, reRouting)) &&
+                    .equals(other.instructionOption, instructionOption)) &&
             (identical(other.finished, finished) ||
                 const DeepCollectionEquality()
                     .equals(other.finished, finished)));
@@ -524,8 +512,7 @@ class _$_NavigationState implements _NavigationState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(isLoading) ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(reRouting) ^
+      const DeepCollectionEquality().hash(instructionOption) ^
       const DeepCollectionEquality().hash(finished);
 
   @override
@@ -536,16 +523,13 @@ class _$_NavigationState implements _NavigationState {
 abstract class _NavigationState implements NavigationState {
   const factory _NavigationState(
       {@required bool isLoading,
-      @required Option<List<CoordinatePoint>> points,
-      @required bool reRouting,
+      @required Option<NavigationInstruction> instructionOption,
       @required bool finished}) = _$_NavigationState;
 
   @override
   bool get isLoading;
   @override
-  Option<List<CoordinatePoint>> get points;
-  @override
-  bool get reRouting;
+  Option<NavigationInstruction> get instructionOption;
   @override
   bool get finished;
   @override
