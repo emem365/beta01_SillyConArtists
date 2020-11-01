@@ -21,7 +21,7 @@ class SearchBar extends StatelessWidget {
           : Row(
               children: [
                 Expanded(
-                  child: [
+                  child:
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24.0),
@@ -75,7 +75,6 @@ class SearchBar extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ],
                 ),
                 state.searchInput.value.fold(
                   (failure) => failure.maybeMap(
