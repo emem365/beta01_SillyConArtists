@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:raahi/application/navigation/my_location/my_location_bloc.dart';
 import 'package:raahi/application/search/search_bloc.dart';
 
 class SearchBar extends StatelessWidget {
@@ -86,8 +86,17 @@ class SearchBar extends StatelessWidget {
                         color: const Color(0xff2aa198),
                         borderRadius: BorderRadius.circular(24.0),
                         child: GestureDetector(
-                          onTap: () => context.bloc<SearchBloc>().add(
-                                const SearchEvent.sendQuery(),
+                          onTap: () => context
+                              .bloc<MyLocationBloc>()
+                              .state
+                              .locationDataOption
+                              .fold(
+                                () => null,
+                                (locationData) =>
+                                    context.bloc<SearchBloc>().add(
+                                          SearchEvent.sendQuery(
+                                              locationData: locationData),
+                                        ),
                               ),
                           child: const Padding(
                             padding: EdgeInsets.all(16.0),
@@ -106,8 +115,16 @@ class SearchBar extends StatelessWidget {
                       color: const Color(0xff2aa198),
                       borderRadius: BorderRadius.circular(24.0),
                       child: GestureDetector(
-                        onTap: () => context.bloc<SearchBloc>().add(
-                              const SearchEvent.sendQuery(),
+                        onTap: () => context
+                            .bloc<MyLocationBloc>()
+                            .state
+                            .locationDataOption
+                            .fold(
+                              () => null,
+                              (locationData) => context.bloc<SearchBloc>().add(
+                                    SearchEvent.sendQuery(
+                                        locationData: locationData),
+                                  ),
                             ),
                         child: const Padding(
                           padding: EdgeInsets.all(16.0),
