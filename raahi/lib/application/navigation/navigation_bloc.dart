@@ -22,15 +22,9 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
     NavigationEvent event,
   ) async* {
     yield* event.map(
-      start: (e) async* {
-
-      },
-      nextInstruction: (e) async* {
-
-      },
-      stop: (e) async* {
-
-      },
+      start: (e) async* {},
+      nextInstruction: (e) async* {},
+      stop: (e) async* {},
     );
   }
 }

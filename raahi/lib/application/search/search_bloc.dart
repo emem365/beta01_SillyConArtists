@@ -48,26 +48,25 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         }, onError: (e) {
           debugPrint('Some Error occurred $e');
         });
+        msgReceived = _smsHelper.receivedMsgStream.listen((event) {
+          add(const SearchEvent.queryResultReceived());
+        });
       },
       queryResultReceived: (e) async* {
-        msgReceived = _smsHelper.receivedMsgStream.listen((event) {});
         // TODO: Call when query sent successfully
         if (isSent) {
           yield state.copyWith(
             isLoading: false,
-            resultObjects: some(
-              [
-                QueryResultObject(
-                  name: LocationName('This place'),
-                  cityName: 'drkj',
-                )
-              ],
-            ),
+            resultObjects: some(_smsHelper.places),
           );
         }
         // This is dummy data replace it with real
       },
-      startNavigation: (value) async* {},
+      startNavigation: (value) async* {
+        //R1@index;lat;lon
+        _smsHelper.sendSms(
+            'R1${value.index};${value.locationData.latitude};${value.locationData.longitude}');
+      },
     );
   }
 }

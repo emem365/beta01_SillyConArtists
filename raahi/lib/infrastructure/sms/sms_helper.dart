@@ -2,13 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:raahi/domain/navigation/instruction_type.dart';
+import 'package:raahi/domain/navigation/navigation_instruction.dart';
+import 'package:raahi/infrastructure/location/my_location.dart';
 import 'package:sms_maintained/sms.dart';
 
+import '../../application/navigation/navigation_bloc.dart';
 import '../../domain/core/value_objects.dart';
 import '../../domain/search/query_result_object.dart';
+import '../../injection.dart';
 
 @LazySingleton()
 class SmsHelper {
+  final MyLocation _myLocation = getIt<MyLocation>();
   final SmsSender sender = SmsSender();
   final String address = '+919826092380';
   final SmsReceiver receiver = SmsReceiver();
@@ -22,6 +28,9 @@ class SmsHelper {
       StreamController<String>.broadcast();
   Stream<String> receivedMsgStream;
   List<QueryResultObject> places = [];
+  List<NavigationInstruction> instructions = [];
+
+  int nextInstructionIndex;
 
   void receivedMessage() {
     receivedMsgStream = receivedMsg.stream;
@@ -40,8 +49,47 @@ class SmsHelper {
           }
           break;
         case 'S1':
+          //S1@instruction;instructionType;distance;
+          //instruction;instructionType;distance;instruction;instructionType;distance;
+          for (int i = 0; i < len; i = i + 3) {
+            int type = int.parse(data[i + 2]);
+            InstructionType instructionType;
+            if (type == 1) {
+              instructionType = const InstructionType.left();
+            } else if (type == 2) {
+              instructionType = const InstructionType.right();
+            } else if (type == 3) {
+              instructionType = const InstructionType.sharpLeft();
+            } else if (type == 4) {
+              instructionType = const InstructionType.slightLeft();
+            } else if (type == 5) {
+              instructionType = const InstructionType.slightRight();
+            } else if (type == 6) {
+              instructionType = const InstructionType.straight();
+            } else if (type == 7) {
+              instructionType = const InstructionType.enterRoundabout();
+            } else if (type == 8) {
+              instructionType = const InstructionType.exitRoundabout();
+            } else if (type == 9) {
+              instructionType = const InstructionType.uTurn();
+            } else if (type == 10) {
+              instructionType = const InstructionType.goal();
+            } else if (type == 11) {
+              instructionType = const InstructionType.depart();
+            } else if (type == 12) {
+              instructionType = const InstructionType.keepLeft();
+            } else if (type == 13) {
+              instructionType = const InstructionType.keepRight();
+            }
+            instructions.add(NavigationInstruction(
+                instruction: data[i],
+                type: instructionType,
+                distance: double.parse(data[i + 2])));
+          }
+          break;
 
         default:
+          debugPrint('Ignore the message');
       }
 
       receivedMsg.sink.add(event.body);
@@ -50,6 +98,16 @@ class SmsHelper {
     }, onError: (e) {
       debugPrint('$e');
     });
+  }
+
+  NavigationInstruction getNextInstruction() {
+    if (nextInstructionIndex == instructions.length) {
+      //do not return this //it is completed
+    }
+    // for R2 await _mylocation.getLocation()
+
+    nextInstructionIndex += 1;
+    return instructions[nextInstructionIndex];
   }
 
   void sendSms(String mssg) {
