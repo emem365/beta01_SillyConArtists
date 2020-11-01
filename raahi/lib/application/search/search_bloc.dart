@@ -30,6 +30,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     SearchEvent event,
   ) async* {
     StreamSubscription<bool> msgDelivered;
+    StreamSubscription<String> msgReceived;
+    bool isSent = false;
     yield* event.map(
       inputChanged: (e) async* {
         yield state.copyWith(searchInput: SearchInput(e.input));
@@ -38,28 +40,53 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         // TODO: Implement sending SMS query
         yield state.copyWith(isLoading: true);
         _smsHelper.sendSms(
-            '${state.searchInput.getOrCrash()};${e.locationData.latitude};${e.locationData.longitude}');
+            'R0${state.searchInput.getOrCrash()};${e.locationData.latitude};${e.locationData.longitude}');
         _smsHelper.isMssgDelivered();
         msgDelivered = _smsHelper.isSmsDeliveredStream.listen((event) {
           debugPrint('Location Delivered: $event');
+          isSent = true;
         }, onError: (e) {
           debugPrint('Some Error occurred $e');
         });
       },
       queryResultReceived: (e) async* {
+        List<QueryResultObject> places = [];
+        msgReceived = _smsHelper.receivedMsgStream.listen((event) {
+          String msg = event.substring(0, 3);
+          String instruction = event.substring(3);
+          List<String> data = instruction.split(';');
+          int len = data.length;
+          switch (msg) {
+            case 'S0':
+              //This means a list of probable places
+              //S0@placeName;placeCity;placeName;placeCity;placeName;placeCity
+
+              for (int i = 0; i < len; i = i + 2) {
+                places.add(QueryResultObject(
+                    name: LocationName(data[i]), cityName: data[i + 1]));
+              }
+              break;
+            case 'S1':
+            default:
+          }
+        });
         // TODO: Call when query sent successfully
-        yield state.copyWith(
-          isLoading: false,
-          resultObjects: some(
-            [
-              QueryResultObject(
-                name: LocationName('This place'),
-                distance: 200.0,
-              )
-            ],
-          ),
-        ); // This is dummy data replace it with real
+        if (isSent) {
+          yield state.copyWith(
+            isLoading: false,
+            resultObjects: some(
+              [
+                QueryResultObject(
+                  name: LocationName('This place'),
+                  cityName: 'drkj',
+                )
+              ],
+            ),
+          );
+        }
+        // This is dummy data replace it with real
       },
+      startNavigation: (value) async* {},
     );
   }
 }

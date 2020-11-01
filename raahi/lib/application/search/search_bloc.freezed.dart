@@ -31,6 +31,11 @@ class _$SearchEventTearOff {
   _QueryResultReceived queryResultReceived() {
     return const _QueryResultReceived();
   }
+
+// ignore: unused_element
+  _StartNavigation startNavigation() {
+    return const _StartNavigation();
+  }
 }
 
 /// @nodoc
@@ -44,12 +49,14 @@ mixin _$SearchEvent {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
+    @required Result startNavigation(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
+    Result startNavigation(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -57,12 +64,14 @@ mixin _$SearchEvent {
     @required Result inputChanged(_InputChanged value),
     @required Result sendQuery(_SendQuery value),
     @required Result queryResultReceived(_QueryResultReceived value),
+    @required Result startNavigation(_StartNavigation value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result inputChanged(_InputChanged value),
     Result sendQuery(_SendQuery value),
     Result queryResultReceived(_QueryResultReceived value),
+    Result startNavigation(_StartNavigation value),
     @required Result orElse(),
   });
 }
@@ -145,10 +154,12 @@ class _$_InputChanged implements _InputChanged {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
+    @required Result startNavigation(),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
     assert(queryResultReceived != null);
+    assert(startNavigation != null);
     return inputChanged(input);
   }
 
@@ -158,6 +169,7 @@ class _$_InputChanged implements _InputChanged {
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
+    Result startNavigation(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -173,10 +185,12 @@ class _$_InputChanged implements _InputChanged {
     @required Result inputChanged(_InputChanged value),
     @required Result sendQuery(_SendQuery value),
     @required Result queryResultReceived(_QueryResultReceived value),
+    @required Result startNavigation(_StartNavigation value),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
     assert(queryResultReceived != null);
+    assert(startNavigation != null);
     return inputChanged(this);
   }
 
@@ -186,6 +200,7 @@ class _$_InputChanged implements _InputChanged {
     Result inputChanged(_InputChanged value),
     Result sendQuery(_SendQuery value),
     Result queryResultReceived(_QueryResultReceived value),
+    Result startNavigation(_StartNavigation value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -268,10 +283,12 @@ class _$_SendQuery implements _SendQuery {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
+    @required Result startNavigation(),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
     assert(queryResultReceived != null);
+    assert(startNavigation != null);
     return sendQuery(locationData);
   }
 
@@ -281,6 +298,7 @@ class _$_SendQuery implements _SendQuery {
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
+    Result startNavigation(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -296,10 +314,12 @@ class _$_SendQuery implements _SendQuery {
     @required Result inputChanged(_InputChanged value),
     @required Result sendQuery(_SendQuery value),
     @required Result queryResultReceived(_QueryResultReceived value),
+    @required Result startNavigation(_StartNavigation value),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
     assert(queryResultReceived != null);
+    assert(startNavigation != null);
     return sendQuery(this);
   }
 
@@ -309,6 +329,7 @@ class _$_SendQuery implements _SendQuery {
     Result inputChanged(_InputChanged value),
     Result sendQuery(_SendQuery value),
     Result queryResultReceived(_QueryResultReceived value),
+    Result startNavigation(_StartNavigation value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -369,10 +390,12 @@ class _$_QueryResultReceived implements _QueryResultReceived {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
+    @required Result startNavigation(),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
     assert(queryResultReceived != null);
+    assert(startNavigation != null);
     return queryResultReceived();
   }
 
@@ -382,6 +405,7 @@ class _$_QueryResultReceived implements _QueryResultReceived {
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
+    Result startNavigation(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -397,10 +421,12 @@ class _$_QueryResultReceived implements _QueryResultReceived {
     @required Result inputChanged(_InputChanged value),
     @required Result sendQuery(_SendQuery value),
     @required Result queryResultReceived(_QueryResultReceived value),
+    @required Result startNavigation(_StartNavigation value),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
     assert(queryResultReceived != null);
+    assert(startNavigation != null);
     return queryResultReceived(this);
   }
 
@@ -410,6 +436,7 @@ class _$_QueryResultReceived implements _QueryResultReceived {
     Result inputChanged(_InputChanged value),
     Result sendQuery(_SendQuery value),
     Result queryResultReceived(_QueryResultReceived value),
+    Result startNavigation(_StartNavigation value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -422,6 +449,109 @@ class _$_QueryResultReceived implements _QueryResultReceived {
 
 abstract class _QueryResultReceived implements SearchEvent {
   const factory _QueryResultReceived() = _$_QueryResultReceived;
+}
+
+/// @nodoc
+abstract class _$StartNavigationCopyWith<$Res> {
+  factory _$StartNavigationCopyWith(
+          _StartNavigation value, $Res Function(_StartNavigation) then) =
+      __$StartNavigationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$StartNavigationCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res>
+    implements _$StartNavigationCopyWith<$Res> {
+  __$StartNavigationCopyWithImpl(
+      _StartNavigation _value, $Res Function(_StartNavigation) _then)
+      : super(_value, (v) => _then(v as _StartNavigation));
+
+  @override
+  _StartNavigation get _value => super._value as _StartNavigation;
+}
+
+/// @nodoc
+class _$_StartNavigation implements _StartNavigation {
+  const _$_StartNavigation();
+
+  @override
+  String toString() {
+    return 'SearchEvent.startNavigation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _StartNavigation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result inputChanged(String input),
+    @required Result sendQuery(LocationData locationData),
+    @required Result queryResultReceived(),
+    @required Result startNavigation(),
+  }) {
+    assert(inputChanged != null);
+    assert(sendQuery != null);
+    assert(queryResultReceived != null);
+    assert(startNavigation != null);
+    return startNavigation();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result inputChanged(String input),
+    Result sendQuery(LocationData locationData),
+    Result queryResultReceived(),
+    Result startNavigation(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (startNavigation != null) {
+      return startNavigation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result inputChanged(_InputChanged value),
+    @required Result sendQuery(_SendQuery value),
+    @required Result queryResultReceived(_QueryResultReceived value),
+    @required Result startNavigation(_StartNavigation value),
+  }) {
+    assert(inputChanged != null);
+    assert(sendQuery != null);
+    assert(queryResultReceived != null);
+    assert(startNavigation != null);
+    return startNavigation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result inputChanged(_InputChanged value),
+    Result sendQuery(_SendQuery value),
+    Result queryResultReceived(_QueryResultReceived value),
+    Result startNavigation(_StartNavigation value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (startNavigation != null) {
+      return startNavigation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartNavigation implements SearchEvent {
+  const factory _StartNavigation() = _$_StartNavigation;
 }
 
 /// @nodoc

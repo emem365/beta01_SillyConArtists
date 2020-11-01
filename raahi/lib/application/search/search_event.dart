@@ -7,4 +7,5 @@ abstract class SearchEvent with _$SearchEvent {
   const factory SearchEvent.sendQuery({@required LocationData locationData}) =
       _SendQuery;
   const factory SearchEvent.queryResultReceived() = _QueryResultReceived;
+  const factory SearchEvent.startNavigation() = _StartNavigation;
 }

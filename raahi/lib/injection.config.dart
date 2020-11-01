@@ -23,16 +23,9 @@ GetIt $initGetIt(
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   gh.lazySingleton<MyLocation>(() => MyLocation());
-<<<<<<< HEAD
   gh.lazySingleton<NavigationBloc>(() => NavigationBloc());
   gh.lazySingleton<SmsHelper>(() => SmsHelper());
   gh.lazySingleton<SearchBloc>(() => SearchBloc(get<SmsHelper>()));
-=======
-
-
-  gh.lazySingleton<NavigationBloc>(() => NavigationBloc());
-  gh.factory<SearchBloc>(() => SearchBloc());
->>>>>>> 8db4e7d189a341d3839c34bf479b3e05ff27d972
 
   // Eager singletons must be registered in the right order
   gh.singleton<MyLocationBloc>(MyLocationBloc(get<MyLocation>()));
