@@ -14,8 +14,10 @@ class _$NavigationEventTearOff {
   const _$NavigationEventTearOff();
 
 // ignore: unused_element
-  _Start start() {
-    return const _Start();
+  _Start start({@required QueryResultObject resultObject}) {
+    return _Start(
+      resultObject: resultObject,
+    );
   }
 
 // ignore: unused_element
@@ -37,13 +39,13 @@ const $NavigationEvent = _$NavigationEventTearOff();
 mixin _$NavigationEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result start(),
+    @required Result start(QueryResultObject resultObject),
     @required Result nextInstruction(),
     @required Result stop(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result start(),
+    Result start(QueryResultObject resultObject),
     Result nextInstruction(),
     Result stop(),
     @required Result orElse(),
@@ -84,6 +86,9 @@ class _$NavigationEventCopyWithImpl<$Res>
 abstract class _$StartCopyWith<$Res> {
   factory _$StartCopyWith(_Start value, $Res Function(_Start) then) =
       __$StartCopyWithImpl<$Res>;
+  $Res call({QueryResultObject resultObject});
+
+  $QueryResultObjectCopyWith<$Res> get resultObject;
 }
 
 /// @nodoc
@@ -94,49 +99,82 @@ class __$StartCopyWithImpl<$Res> extends _$NavigationEventCopyWithImpl<$Res>
 
   @override
   _Start get _value => super._value as _Start;
+
+  @override
+  $Res call({
+    Object resultObject = freezed,
+  }) {
+    return _then(_Start(
+      resultObject: resultObject == freezed
+          ? _value.resultObject
+          : resultObject as QueryResultObject,
+    ));
+  }
+
+  @override
+  $QueryResultObjectCopyWith<$Res> get resultObject {
+    if (_value.resultObject == null) {
+      return null;
+    }
+    return $QueryResultObjectCopyWith<$Res>(_value.resultObject, (value) {
+      return _then(_value.copyWith(resultObject: value));
+    });
+  }
 }
 
 /// @nodoc
 class _$_Start implements _Start {
-  const _$_Start();
+  const _$_Start({@required this.resultObject}) : assert(resultObject != null);
+
+  @override
+  final QueryResultObject resultObject;
 
   @override
   String toString() {
-    return 'NavigationEvent.start()';
+    return 'NavigationEvent.start(resultObject: $resultObject)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Start);
+    return identical(this, other) ||
+        (other is _Start &&
+            (identical(other.resultObject, resultObject) ||
+                const DeepCollectionEquality()
+                    .equals(other.resultObject, resultObject)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(resultObject);
+
+  @override
+  _$StartCopyWith<_Start> get copyWith =>
+      __$StartCopyWithImpl<_Start>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result start(),
+    @required Result start(QueryResultObject resultObject),
     @required Result nextInstruction(),
     @required Result stop(),
   }) {
     assert(start != null);
     assert(nextInstruction != null);
     assert(stop != null);
-    return start();
+    return start(resultObject);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result start(),
+    Result start(QueryResultObject resultObject),
     Result nextInstruction(),
     Result stop(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (start != null) {
-      return start();
+      return start(resultObject);
     }
     return orElse();
   }
@@ -171,7 +209,10 @@ class _$_Start implements _Start {
 }
 
 abstract class _Start implements NavigationEvent {
-  const factory _Start() = _$_Start;
+  const factory _Start({@required QueryResultObject resultObject}) = _$_Start;
+
+  QueryResultObject get resultObject;
+  _$StartCopyWith<_Start> get copyWith;
 }
 
 /// @nodoc
@@ -213,7 +254,7 @@ class _$_NextInstruction implements _NextInstruction {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result start(),
+    @required Result start(QueryResultObject resultObject),
     @required Result nextInstruction(),
     @required Result stop(),
   }) {
@@ -226,7 +267,7 @@ class _$_NextInstruction implements _NextInstruction {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result start(),
+    Result start(QueryResultObject resultObject),
     Result nextInstruction(),
     Result stop(),
     @required Result orElse(),
@@ -307,7 +348,7 @@ class _$_Stop implements _Stop {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result start(),
+    @required Result start(QueryResultObject resultObject),
     @required Result nextInstruction(),
     @required Result stop(),
   }) {
@@ -320,7 +361,7 @@ class _$_Stop implements _Stop {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result start(),
+    Result start(QueryResultObject resultObject),
     Result nextInstruction(),
     Result stop(),
     @required Result orElse(),
@@ -372,12 +413,16 @@ class _$NavigationStateTearOff {
 // ignore: unused_element
   _NavigationState call(
       {@required bool isLoading,
+      @required Option<QueryResultObject> resultObjectOption,
       @required Option<NavigationInstruction> instructionOption,
-      @required bool finished}) {
+      @required bool finished,
+      @required bool stopped}) {
     return _NavigationState(
       isLoading: isLoading,
+      resultObjectOption: resultObjectOption,
       instructionOption: instructionOption,
       finished: finished,
+      stopped: stopped,
     );
   }
 }
@@ -389,8 +434,10 @@ const $NavigationState = _$NavigationStateTearOff();
 /// @nodoc
 mixin _$NavigationState {
   bool get isLoading;
+  Option<QueryResultObject> get resultObjectOption;
   Option<NavigationInstruction> get instructionOption;
   bool get finished;
+  bool get stopped;
 
   $NavigationStateCopyWith<NavigationState> get copyWith;
 }
@@ -402,8 +449,10 @@ abstract class $NavigationStateCopyWith<$Res> {
       _$NavigationStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
+      Option<QueryResultObject> resultObjectOption,
       Option<NavigationInstruction> instructionOption,
-      bool finished});
+      bool finished,
+      bool stopped});
 }
 
 /// @nodoc
@@ -418,15 +467,21 @@ class _$NavigationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object isLoading = freezed,
+    Object resultObjectOption = freezed,
     Object instructionOption = freezed,
     Object finished = freezed,
+    Object stopped = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+      resultObjectOption: resultObjectOption == freezed
+          ? _value.resultObjectOption
+          : resultObjectOption as Option<QueryResultObject>,
       instructionOption: instructionOption == freezed
           ? _value.instructionOption
           : instructionOption as Option<NavigationInstruction>,
       finished: finished == freezed ? _value.finished : finished as bool,
+      stopped: stopped == freezed ? _value.stopped : stopped as bool,
     ));
   }
 }
@@ -440,8 +495,10 @@ abstract class _$NavigationStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoading,
+      Option<QueryResultObject> resultObjectOption,
       Option<NavigationInstruction> instructionOption,
-      bool finished});
+      bool finished,
+      bool stopped});
 }
 
 /// @nodoc
@@ -458,15 +515,21 @@ class __$NavigationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object isLoading = freezed,
+    Object resultObjectOption = freezed,
     Object instructionOption = freezed,
     Object finished = freezed,
+    Object stopped = freezed,
   }) {
     return _then(_NavigationState(
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+      resultObjectOption: resultObjectOption == freezed
+          ? _value.resultObjectOption
+          : resultObjectOption as Option<QueryResultObject>,
       instructionOption: instructionOption == freezed
           ? _value.instructionOption
           : instructionOption as Option<NavigationInstruction>,
       finished: finished == freezed ? _value.finished : finished as bool,
+      stopped: stopped == freezed ? _value.stopped : stopped as bool,
     ));
   }
 }
@@ -475,22 +538,30 @@ class __$NavigationStateCopyWithImpl<$Res>
 class _$_NavigationState implements _NavigationState {
   const _$_NavigationState(
       {@required this.isLoading,
+      @required this.resultObjectOption,
       @required this.instructionOption,
-      @required this.finished})
+      @required this.finished,
+      @required this.stopped})
       : assert(isLoading != null),
+        assert(resultObjectOption != null),
         assert(instructionOption != null),
-        assert(finished != null);
+        assert(finished != null),
+        assert(stopped != null);
 
   @override
   final bool isLoading;
   @override
+  final Option<QueryResultObject> resultObjectOption;
+  @override
   final Option<NavigationInstruction> instructionOption;
   @override
   final bool finished;
+  @override
+  final bool stopped;
 
   @override
   String toString() {
-    return 'NavigationState(isLoading: $isLoading, instructionOption: $instructionOption, finished: $finished)';
+    return 'NavigationState(isLoading: $isLoading, resultObjectOption: $resultObjectOption, instructionOption: $instructionOption, finished: $finished, stopped: $stopped)';
   }
 
   @override
@@ -500,20 +571,27 @@ class _$_NavigationState implements _NavigationState {
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
                     .equals(other.isLoading, isLoading)) &&
+            (identical(other.resultObjectOption, resultObjectOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.resultObjectOption, resultObjectOption)) &&
             (identical(other.instructionOption, instructionOption) ||
                 const DeepCollectionEquality()
                     .equals(other.instructionOption, instructionOption)) &&
             (identical(other.finished, finished) ||
                 const DeepCollectionEquality()
-                    .equals(other.finished, finished)));
+                    .equals(other.finished, finished)) &&
+            (identical(other.stopped, stopped) ||
+                const DeepCollectionEquality().equals(other.stopped, stopped)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(resultObjectOption) ^
       const DeepCollectionEquality().hash(instructionOption) ^
-      const DeepCollectionEquality().hash(finished);
+      const DeepCollectionEquality().hash(finished) ^
+      const DeepCollectionEquality().hash(stopped);
 
   @override
   _$NavigationStateCopyWith<_NavigationState> get copyWith =>
@@ -523,15 +601,21 @@ class _$_NavigationState implements _NavigationState {
 abstract class _NavigationState implements NavigationState {
   const factory _NavigationState(
       {@required bool isLoading,
+      @required Option<QueryResultObject> resultObjectOption,
       @required Option<NavigationInstruction> instructionOption,
-      @required bool finished}) = _$_NavigationState;
+      @required bool finished,
+      @required bool stopped}) = _$_NavigationState;
 
   @override
   bool get isLoading;
   @override
+  Option<QueryResultObject> get resultObjectOption;
+  @override
   Option<NavigationInstruction> get instructionOption;
   @override
   bool get finished;
+  @override
+  bool get stopped;
   @override
   _$NavigationStateCopyWith<_NavigationState> get copyWith;
 }

@@ -21,7 +21,7 @@ class SearchResults extends StatelessWidget {
               itemCount: resultObjects.length,
               itemBuilder: (context, index) => SearchTile(
                 title: resultObjects[index].name.getOrCrash(),
-                distance: '${resultObjects[index].distance} m.',
+                distance: resultObjects[index].cityName,
               ),
             ),
           ),
