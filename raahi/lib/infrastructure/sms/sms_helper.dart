@@ -40,7 +40,7 @@ class SmsHelper {
       List<String> data = instruction.split(';');
       int len = data.length;
       switch (msg) {
-        case 'S0':
+        case 'S0@':
           //This means a list of probable places
           //S0@placeName;placeCity;placeName;placeCity;placeName;placeCity
           for (int i = 0; i < len; i = i + 2) {
@@ -48,7 +48,7 @@ class SmsHelper {
                 name: LocationName(data[i]), cityName: data[i + 1]));
           }
           break;
-        case 'S1':
+        case 'S1@':
           //S1@instruction;instructionType;distance;
           //instruction;instructionType;distance;instruction;instructionType;distance;
           for (int i = 0; i < len; i = i + 3) {
