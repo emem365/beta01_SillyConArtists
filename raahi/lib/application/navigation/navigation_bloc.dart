@@ -24,9 +24,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   NavigationBloc(this._smsHelper) : super(NavigationState.initial());
 
   @override
-  Stream<NavigationState> mapEventToState(
-    NavigationEvent event,
-  ) async* {
+  Stream<NavigationState> mapEventToState(NavigationEvent event) async* {
     yield* event.map(
       start: (e) async* {
         yield state.copyWith(
@@ -37,11 +35,10 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
             //1 st Instruction
             await _smsHelper.getNextInstruction();
         yield state.copyWith(
-            isLoading: false, instructionOption: some(nextInstruction));
+          isLoading: false, instructionOption: some(nextInstruction));
       },
       nextInstruction: (e) async* {
         yield state.copyWith(isLoading: true);
-
         final NavigationInstruction nextInstruction =
             await _smsHelper.getNextInstruction();
 

@@ -9,6 +9,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/search/query_result_object.dart';
 import '../core/error_occurred.dart';
 import '../core/splash.dart';
 import '../home/home.dart';
@@ -62,8 +63,10 @@ class Router extends RouterBase {
       );
     },
     Navigation: (data) {
+      final args = data.getArgs<NavigationArguments>(nullOk: false);
       return PageRouteBuilder<dynamic>(
-        pageBuilder: (context, animation, secondaryAnimation) => Navigation(),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            Navigation(resultObject: args.resultObject),
         settings: data,
         transitionDuration: const Duration(milliseconds: 500),
       );
@@ -79,4 +82,10 @@ class Router extends RouterBase {
 class ErrorOccurredArguments {
   final String error;
   ErrorOccurredArguments({@required this.error});
+}
+
+/// Navigation arguments holder class
+class NavigationArguments {
+  final QueryResultObject resultObject;
+  NavigationArguments({@required this.resultObject});
 }
