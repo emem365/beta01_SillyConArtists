@@ -9,16 +9,16 @@ class Logo extends StatelessWidget {
       builder: (context, state) => state.searchInput.value.fold(
         (failure) => failure.maybeMap(
           empty: (_) => Column(
-            children: const [
+            children: [
               Hero(
                 tag: 'logo',
-                child: CircleAvatar(
-                  backgroundColor: Color(0xffb58900),
-                  radius: 48.0,
-                  child: Text('Logo'),
+                child: Image.asset(
+                  'assets/icon.png',
+                  width: 64.0,
+                  height: 64.0,
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(16.0),
               ),
             ],
