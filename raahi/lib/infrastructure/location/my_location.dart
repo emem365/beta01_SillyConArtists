@@ -8,14 +8,14 @@ import 'package:raahi/domain/navigation/status_failure.dart';
 
 @LazySingleton()
 class MyLocation {
-  Location location = Location();
+  final Location _location = Location();
 
   Stream<LocationData> locationStream;
 
   Future<Either<PermissionFailure, Unit>> getPermission() async {
-    PermissionStatus permissionGranted = await location.hasPermission();
+    PermissionStatus permissionGranted = await _location.hasPermission();
     if (permissionGranted == PermissionStatus.DENIED) {
-      permissionGranted = await location.requestPermission();
+      permissionGranted = await _location.requestPermission();
       switch (permissionGranted) {
         case PermissionStatus.DENIED:
           return left(const PermissionFailure.denied());
@@ -32,9 +32,9 @@ class MyLocation {
   }
 
   Future<Either<StatusFailure, Unit>> getServiceStatus() async {
-    bool serviceEnabled = await location.serviceEnabled();
+    bool serviceEnabled = await _location.serviceEnabled();
     if (!serviceEnabled) {
-      serviceEnabled = await location.requestService();
+      serviceEnabled = await _location.requestService();
     }
     if (serviceEnabled) {
       return right(unit);
@@ -44,6 +44,10 @@ class MyLocation {
   }
 
   Future startListening() async {
-    locationStream = location.onLocationChanged();
+    locationStream = _location.onLocationChanged();
+  }
+
+  Future<LocationData> getLocationData() async {
+    return _location.getLocation();
   }
 }

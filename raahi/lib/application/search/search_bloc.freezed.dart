@@ -33,8 +33,12 @@ class _$SearchEventTearOff {
   }
 
 // ignore: unused_element
-  _StartNavigation startNavigation() {
-    return const _StartNavigation();
+  _StartNavigation startNavigation(
+      {@required int index, @required LocationData locationData}) {
+    return _StartNavigation(
+      index: index,
+      locationData: locationData,
+    );
   }
 }
 
@@ -49,14 +53,14 @@ mixin _$SearchEvent {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
-    @required Result startNavigation(),
+    @required Result startNavigation(int index, LocationData locationData),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
-    Result startNavigation(),
+    Result startNavigation(int index, LocationData locationData),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -154,7 +158,7 @@ class _$_InputChanged implements _InputChanged {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
-    @required Result startNavigation(),
+    @required Result startNavigation(int index, LocationData locationData),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
@@ -169,7 +173,7 @@ class _$_InputChanged implements _InputChanged {
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
-    Result startNavigation(),
+    Result startNavigation(int index, LocationData locationData),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -283,7 +287,7 @@ class _$_SendQuery implements _SendQuery {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
-    @required Result startNavigation(),
+    @required Result startNavigation(int index, LocationData locationData),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
@@ -298,7 +302,7 @@ class _$_SendQuery implements _SendQuery {
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
-    Result startNavigation(),
+    Result startNavigation(int index, LocationData locationData),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -390,7 +394,7 @@ class _$_QueryResultReceived implements _QueryResultReceived {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
-    @required Result startNavigation(),
+    @required Result startNavigation(int index, LocationData locationData),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
@@ -405,7 +409,7 @@ class _$_QueryResultReceived implements _QueryResultReceived {
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
-    Result startNavigation(),
+    Result startNavigation(int index, LocationData locationData),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -456,6 +460,7 @@ abstract class _$StartNavigationCopyWith<$Res> {
   factory _$StartNavigationCopyWith(
           _StartNavigation value, $Res Function(_StartNavigation) then) =
       __$StartNavigationCopyWithImpl<$Res>;
+  $Res call({int index, LocationData locationData});
 }
 
 /// @nodoc
@@ -468,24 +473,57 @@ class __$StartNavigationCopyWithImpl<$Res>
 
   @override
   _StartNavigation get _value => super._value as _StartNavigation;
+
+  @override
+  $Res call({
+    Object index = freezed,
+    Object locationData = freezed,
+  }) {
+    return _then(_StartNavigation(
+      index: index == freezed ? _value.index : index as int,
+      locationData: locationData == freezed
+          ? _value.locationData
+          : locationData as LocationData,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_StartNavigation implements _StartNavigation {
-  const _$_StartNavigation();
+  const _$_StartNavigation({@required this.index, @required this.locationData})
+      : assert(index != null),
+        assert(locationData != null);
+
+  @override
+  final int index;
+  @override
+  final LocationData locationData;
 
   @override
   String toString() {
-    return 'SearchEvent.startNavigation()';
+    return 'SearchEvent.startNavigation(index: $index, locationData: $locationData)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _StartNavigation);
+    return identical(this, other) ||
+        (other is _StartNavigation &&
+            (identical(other.index, index) ||
+                const DeepCollectionEquality().equals(other.index, index)) &&
+            (identical(other.locationData, locationData) ||
+                const DeepCollectionEquality()
+                    .equals(other.locationData, locationData)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(index) ^
+      const DeepCollectionEquality().hash(locationData);
+
+  @override
+  _$StartNavigationCopyWith<_StartNavigation> get copyWith =>
+      __$StartNavigationCopyWithImpl<_StartNavigation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -493,13 +531,13 @@ class _$_StartNavigation implements _StartNavigation {
     @required Result inputChanged(String input),
     @required Result sendQuery(LocationData locationData),
     @required Result queryResultReceived(),
-    @required Result startNavigation(),
+    @required Result startNavigation(int index, LocationData locationData),
   }) {
     assert(inputChanged != null);
     assert(sendQuery != null);
     assert(queryResultReceived != null);
     assert(startNavigation != null);
-    return startNavigation();
+    return startNavigation(index, locationData);
   }
 
   @override
@@ -508,12 +546,12 @@ class _$_StartNavigation implements _StartNavigation {
     Result inputChanged(String input),
     Result sendQuery(LocationData locationData),
     Result queryResultReceived(),
-    Result startNavigation(),
+    Result startNavigation(int index, LocationData locationData),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (startNavigation != null) {
-      return startNavigation();
+      return startNavigation(index, locationData);
     }
     return orElse();
   }
@@ -551,7 +589,13 @@ class _$_StartNavigation implements _StartNavigation {
 }
 
 abstract class _StartNavigation implements SearchEvent {
-  const factory _StartNavigation() = _$_StartNavigation;
+  const factory _StartNavigation(
+      {@required int index,
+      @required LocationData locationData}) = _$_StartNavigation;
+
+  int get index;
+  LocationData get locationData;
+  _$StartNavigationCopyWith<_StartNavigation> get copyWith;
 }
 
 /// @nodoc
