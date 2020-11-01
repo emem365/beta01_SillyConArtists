@@ -31,7 +31,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async* {
     StreamSubscription<bool> msgDelivered;
     StreamSubscription<String> msgReceived;
-    bool isSent = false;
+
     yield* event.map(
       inputChanged: (e) async* {
         yield state.copyWith(searchInput: SearchInput(e.input));
@@ -44,7 +44,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         _smsHelper.isMssgDelivered();
         msgDelivered = _smsHelper.isSmsDeliveredStream.listen((event) {
           debugPrint('Location Delivered: $event');
-          isSent = true;
         }, onError: (e) {
           debugPrint('Some Error occurred $e');
         });
@@ -55,13 +54,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       },
       queryResultReceived: (e) async* {
         // TODO: Call when query sent successfully
-        if (isSent) {
-          yield state.copyWith(
-            isLoading: false,
-            resultObjects: some(_smsHelper.places),
-          );
-        }
-        // This is dummy data replace it with real
+        yield state.copyWith(
+          isLoading: false,
+          resultObjects: some(_smsHelper.places),
+        );
       },
       startNavigation: (value) async* {
         //R1@index;lat;lon
