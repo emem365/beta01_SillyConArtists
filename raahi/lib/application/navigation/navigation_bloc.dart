@@ -23,7 +23,9 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   NavigationBloc(this._smsHelper) : super(NavigationState.initial());
 
   @override
-  Stream<NavigationState> mapEventToState(NavigationEvent event,) async* {
+  Stream<NavigationState> mapEventToState(
+    NavigationEvent event,
+  ) async* {
     yield* event.map(
       start: (e) async* {
         yield state.copyWith(
@@ -40,7 +42,8 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
         // TODO: Call next instruction method
         // TODO: Check if the instruction is final and set [finished] bool
         yield state.copyWith(
-          isLoading: false,); // TODO: Yield state with next instruction
+          isLoading: false,
+        ); // TODO: Yield state with next instruction
       },
       stop: (e) async* {
         yield NavigationState.initial();

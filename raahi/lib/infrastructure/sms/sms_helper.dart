@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:location/location.dart';
 import 'package:raahi/domain/navigation/instruction_type.dart';
 import 'package:raahi/domain/navigation/navigation_instruction.dart';
 import 'package:raahi/infrastructure/location/my_location.dart';
@@ -100,13 +101,19 @@ class SmsHelper {
     });
   }
 
-  NavigationInstruction getNextInstruction() {
+  Future<NavigationInstruction> getNextInstruction() async {
+    nextInstructionIndex += 1;
     if (nextInstructionIndex == instructions.length) {
-      //do not return this //it is completed
+      //R2@latitude;longitude
+      instructions = [];
+      nextInstructionIndex = 0;
+      LocationData loc = await _myLocation.getLocationData();
+      sendSms('R2@${loc.latitude};${loc.longitude}');
+      receivedMessage();
+      return instructions[nextInstructionIndex];
     }
     // for R2 await _mylocation.getLocation()
 
-    nextInstructionIndex += 1;
     return instructions[nextInstructionIndex];
   }
 

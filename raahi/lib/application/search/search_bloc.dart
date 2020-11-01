@@ -40,7 +40,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         // TODO: Implement sending SMS query
         yield state.copyWith(isLoading: true);
         _smsHelper.sendSms(
-            'R0${state.searchInput.getOrCrash()};${e.locationData.latitude};${e.locationData.longitude}');
+            'R0@${state.searchInput.getOrCrash()};${e.locationData.latitude};${e.locationData.longitude}');
         _smsHelper.isMssgDelivered();
         msgDelivered = _smsHelper.isSmsDeliveredStream.listen((event) {
           debugPrint('Location Delivered: $event');
@@ -48,6 +48,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         }, onError: (e) {
           debugPrint('Some Error occurred $e');
         });
+        _smsHelper.receivedMessage();
         msgReceived = _smsHelper.receivedMsgStream.listen((event) {
           add(const SearchEvent.queryResultReceived());
         });
@@ -65,7 +66,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       startNavigation: (value) async* {
         //R1@index;lat;lon
         _smsHelper.sendSms(
-            'R1${value.index};${value.locationData.latitude};${value.locationData.longitude}');
+            'R1@${value.index};${value.locationData.latitude};${value.locationData.longitude}');
       },
     );
   }
